@@ -21,6 +21,7 @@ class AuthenticatedSessionController extends Controller
 
     /**
      * Handle an incoming authentication request.
+     * Smart redirect based on user role and merchant status
      */
     public function store(LoginRequest $request): RedirectResponse
     {
@@ -28,14 +29,33 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        // التوجيه الذكي حسب دور المستخدم
+        // التوجيه الذكي حسب دور المستخدم وحالة التاجر
         $user = Auth::user();
         
-        return match($user->role) {
-            'admin' => redirect()->intended('/admin'),
-            'merchant' => redirect()->intended('/merchant'),
-            default => redirect()->intended('/'),
-        };
+        // Admin → لوحة تحكم الأدمن
+        if ($user->isAdmin()) {
+            return redirect()->intended('/admin');
+        }
+        
+        // Merchant → التحقق من حالة الموافقة
+        if ($user->isMerchant()) {
+            $merchant = $user->merchant;
+            
+            // إذا لم يكن لديه ملف تاجر، أنشئ واحد
+            if (!$merchant) {
+                return redirect()->route('merchant.pending');
+            }
+            
+            // التحقق من حالة التاجر
+            return match($merchant->status) {
+                'approved' => redirect()->intended('/merchant'),
+                'rejected' => redirect()->route('merchant.rejected'),
+                default => redirect()->route('merchant.pending'), // pending
+            };
+        }
+        
+        // Customer → الصفحة الرئيسية
+        return redirect()->intended('/');
     }
 
     /**

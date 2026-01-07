@@ -1,0 +1,25 @@
+<?php
+
+return [
+    'cart' => 'سلة التسوق',
+    'your_cart' => 'سلتك',
+    'empty_cart' => 'سلتك فارغة',
+    'continue_shopping' => 'متابعة التسوق',
+    'item' => 'منتج',
+    'items' => 'منتجات',
+    'subtotal' => 'المجموع الفرعي',
+    'tax' => 'الضريبة',
+    'shipping' => 'الشحن',
+    'total' => 'الإجمالي',
+    'proceed_to_checkout' => 'إتمام الطلب',
+    'update_cart' => 'تحديث السلة',
+    'remove' => 'إزالة',
+    'quantity' => 'الكمية',
+    'price' => 'السعر',
+    'checkout' => 'الدفع',
+    'shipping_address' => 'عنوان الشحن',
+    'payment_method' => 'طريقة الدفع',
+    'review_order' => 'مراجعة الطلب',
+    'place_order' => 'تأكيد الطلب',
+    'order_summary' => 'ملخص الطلب',
+];

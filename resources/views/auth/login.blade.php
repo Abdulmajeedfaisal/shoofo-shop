@@ -1,47 +1,39 @@
 <x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+    <h2 class="text-xl font-bold text-charcoal dark:text-white text-center mb-4">
+        {{ app()->getLocale() === 'ar' ? 'تسجيل الدخول' : 'Sign In' }}
+    </h2>
 
-    <form method="POST" action="{{ route('login') }}">
+    <x-auth-session-status class="mb-3 text-sm" :status="session('status')" />
+
+    <form method="POST" action="{{ route('login') }}" class="space-y-3">
         @csrf
-
-        <!-- Email Address -->
         <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+            <x-text-input id="email" class="w-full py-2.5 px-4 text-sm rounded-xl border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:border-royal-gold focus:ring-royal-gold" type="email" name="email" :value="old('email')" required autofocus placeholder="{{ app()->getLocale() === 'ar' ? 'البريد الإلكتروني' : 'Email' }}" />
+            <x-input-error :messages="$errors->get('email')" class="mt-1 text-xs" />
         </div>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+        <div>
+            <x-text-input id="password" class="w-full py-2.5 px-4 text-sm rounded-xl border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:border-royal-gold focus:ring-royal-gold" type="password" name="password" required placeholder="{{ app()->getLocale() === 'ar' ? 'كلمة المرور' : 'Password' }}" />
+            <x-input-error :messages="$errors->get('password')" class="mt-1 text-xs" />
         </div>
 
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
-                <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
+        <div class="flex items-center justify-between text-sm">
+            <label class="flex items-center cursor-pointer">
+                <input type="checkbox" class="w-4 h-4 rounded border-gray-300 text-royal-gold focus:ring-royal-gold" name="remember">
+                <span class="ms-2 text-slate dark:text-gray-400">{{ app()->getLocale() === 'ar' ? 'تذكرني' : 'Remember me' }}</span>
             </label>
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
             @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
+                <a class="text-royal-gold hover:underline" href="{{ route('password.request') }}">{{ app()->getLocale() === 'ar' ? 'نسيت كلمة المرور؟' : 'Forgot?' }}</a>
             @endif
-
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
         </div>
+
+        <button type="submit" class="w-full bg-gradient-to-r from-royal-gold to-gold-light text-midnight py-2.5 rounded-xl font-semibold text-sm hover:shadow-lg transition-all">
+            {{ app()->getLocale() === 'ar' ? 'تسجيل الدخول' : 'Sign In' }}
+        </button>
+
+        <p class="text-center text-sm text-slate dark:text-gray-400 pt-2">
+            {{ app()->getLocale() === 'ar' ? 'ليس لديك حساب؟' : "Don't have an account?" }}
+            <a href="{{ route('register') }}" class="text-royal-gold font-semibold hover:underline">{{ app()->getLocale() === 'ar' ? 'سجل الآن' : 'Register' }}</a>
+        </p>
     </form>
 </x-guest-layout>

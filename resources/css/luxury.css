@@ -1,0 +1,1265 @@
+/* ============================================
+   SHOOFO LUXURY DESIGN SYSTEM
+   Premium Smart Marketplace - احترافي فاخر
+   Works with Tailwind CSS + Laravel Breeze
+   ============================================ */
+
+/* ============================================
+   GOOGLE FONTS IMPORT - خطوط فاخرة
+   ============================================ */
+
+/* English Luxury Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:wght@400;600&display=swap');
+
+/* Arabic Luxury Fonts - خطوط عربية فاخرة */
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&family=Cairo:wght@300;400;600;700;900&family=Noto+Kufi+Arabic:wght@300;400;500;600;700&display=swap');
+
+/* ============================================
+   CSS CUSTOM PROPERTIES (Design Tokens)
+   ============================================ */
+
+:root {
+    /* Primary Colors - الألوان الأساسية */
+    --color-midnight: #0A1628;
+    --color-midnight-light: #1E293B;
+    --color-royal-gold: #D4AF37;
+    --color-royal-gold-light: #E8C84A;
+    --color-royal-gold-dark: #B8962C;
+
+    /* Secondary Colors - الألوان الثانوية */
+    --color-charcoal: #2D3748;
+    --color-slate: #64748B;
+    --color-cream: #FAF9F6;
+    --color-white: #FFFFFF;
+
+    /* Accent Colors - ألوان التمييز */
+    --color-rose-gold: #B76E79;
+    --color-silver: #C0C0C0;
+    --color-deep-purple: #6B46C1;
+
+    /* Status Colors - ألوان الحالة */
+    --color-success: #10B981;
+    --color-error: #EF4444;
+    --color-warning: #F59E0B;
+    --color-info: #3B82F6;
+
+    /* Background Colors - ألوان الخلفية */
+    --bg-primary: var(--color-white);
+    --bg-secondary: var(--color-cream);
+    --bg-tertiary: #F1F5F9;
+    --bg-card: var(--color-white);
+    --bg-nav: rgba(255, 255, 255, 0.98);
+    --bg-overlay: rgba(10, 22, 40, 0.85);
+
+    /* Text Colors - ألوان النص */
+    --text-primary: var(--color-charcoal);
+    --text-secondary: var(--color-slate);
+    --text-accent: var(--color-royal-gold);
+    --text-inverse: var(--color-white);
+    --text-muted: #94A3B8;
+
+    /* Border Colors - ألوان الحدود */
+    --border-light: #E2E8F0;
+    --border-medium: #CBD5E1;
+    --border-accent: var(--color-royal-gold);
+    --border-dark: #475569;
+
+    /* Shadow Colors - ألوان الظلال */
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --shadow-color-strong: rgba(0, 0, 0, 0.2);
+    --shadow-gold: rgba(212, 175, 55, 0.3);
+    --shadow-gold-strong: rgba(212, 175, 55, 0.5);
+
+    /* Animation Timing - توقيت الحركة */
+    --ease-smooth: cubic-bezier(0.4, 0.0, 0.2, 1);
+    --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --ease-elegant: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --ease-in-elegant: cubic-bezier(0.4, 0.0, 1, 1);
+    --ease-out-elegant: cubic-bezier(0.0, 0.0, 0.2, 1);
+
+    /* Duration - المدة */
+    --duration-fast: 150ms;
+    --duration-normal: 300ms;
+    --duration-slow: 500ms;
+    --duration-cinematic: 1000ms;
+    --duration-entrance: 2000ms;
+
+    /* Spacing - المسافات */
+    --nav-height: 80px;
+    --section-padding: 5rem;
+    --container-max: 1280px;
+
+    /* Fonts - الخطوط */
+    --font-heading-en: 'Playfair Display', Georgia, serif;
+    --font-body-en: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-accent-en: 'Cormorant Garamond', Georgia, serif;
+
+    --font-heading-ar: 'Tajawal', 'Cairo', 'Noto Kufi Arabic', sans-serif;
+    --font-body-ar: 'Noto Kufi Arabic', 'Cairo', 'Tajawal', sans-serif;
+}
+
+/* ============================================
+   DARK MODE VARIABLES - الوضع الليلي المحسن
+   ============================================ */
+
+.dark {
+    --bg-primary: #0F172A;
+    --bg-secondary: #1A2234;
+    --bg-tertiary: #243044;
+    --bg-card: #1E293B;
+    --bg-nav: rgba(15, 23, 42, 0.95);
+    --bg-overlay: rgba(0, 0, 0, 0.85);
+
+    --text-primary: #F8FAFC;
+    --text-secondary: #E2E8F0;
+    --text-muted: #94A3B8;
+
+    --border-light: #2D3F5A;
+    --border-medium: #3D5275;
+    --border-dark: #64748B;
+
+    --shadow-color: rgba(0, 0, 0, 0.4);
+    --shadow-color-strong: rgba(0, 0, 0, 0.6);
+
+    /* Gold Glow Effects */
+    --glow-gold-subtle: 0 0 30px rgba(212, 175, 55, 0.08);
+    --glow-gold: 0 0 40px rgba(212, 175, 55, 0.15);
+    --glow-gold-strong: 0 0 60px rgba(212, 175, 55, 0.25);
+}
+
+/* ============================================
+   BASE STYLES - الأنماط الأساسية
+   ============================================ */
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body-en);
+    color: var(--text-primary);
+    background-color: var(--bg-primary);
+    transition: background-color var(--duration-normal) var(--ease-smooth),
+        color var(--duration-normal) var(--ease-smooth);
+}
+
+/* Arabic Font Support - دعم الخطوط العربية */
+html[lang="ar"] body,
+html[dir="rtl"] body {
+    font-family: var(--font-body-ar);
+}
+
+html[lang="ar"] h1,
+html[lang="ar"] h2,
+html[lang="ar"] h3,
+html[lang="ar"] h4,
+html[lang="ar"] h5,
+html[lang="ar"] h6,
+html[dir="rtl"] h1,
+html[dir="rtl"] h2,
+html[dir="rtl"] h3,
+html[dir="rtl"] h4,
+html[dir="rtl"] h5,
+html[dir="rtl"] h6 {
+    font-family: var(--font-heading-ar);
+    font-weight: 700;
+}
+
+/* ============================================
+   TYPOGRAPHY - الطباعة
+   ============================================ */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-heading-en);
+    color: var(--text-primary);
+    transition: color var(--duration-normal) var(--ease-smooth);
+}
+
+.font-accent {
+    font-family: var(--font-accent-en);
+}
+
+html[lang="ar"] .font-accent,
+html[dir="rtl"] .font-accent {
+    font-family: var(--font-heading-ar);
+}
+
+/* ============================================
+   SMOOTH TRANSITIONS - انتقالات سلسة
+   ============================================ */
+
+.transition-smooth {
+    transition: all var(--duration-normal) var(--ease-smooth);
+}
+
+.transition-elegant {
+    transition: all var(--duration-slow) var(--ease-elegant);
+}
+
+.transition-bounce {
+    transition: all var(--duration-normal) var(--ease-bounce);
+}
+
+/* ============================================
+   HOVER EFFECTS - تأثيرات التمرير
+   ============================================ */
+
+.hover-lift {
+    transition: transform var(--duration-normal) var(--ease-smooth),
+        box-shadow var(--duration-normal) var(--ease-smooth);
+}
+
+.hover-lift:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px var(--shadow-color-strong);
+}
+
+.hover-scale {
+    transition: transform var(--duration-normal) var(--ease-bounce);
+}
+
+.hover-scale:hover {
+    transform: scale(1.05);
+}
+
+.hover-glow {
+    transition: box-shadow var(--duration-normal) var(--ease-smooth);
+}
+
+.hover-glow:hover {
+    box-shadow: 0 0 30px var(--shadow-gold-strong);
+}
+
+.hover-gold {
+    transition: color var(--duration-normal) var(--ease-smooth);
+}
+
+.hover-gold:hover {
+    color: var(--color-royal-gold);
+}
+
+/* ============================================
+   ANIMATIONS - الحركات المحسنة
+   ============================================ */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(-60px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(60px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+@keyframes pulse-gold {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 var(--shadow-gold-strong);
+    }
+
+    50% {
+        box-shadow: 0 0 0 20px rgba(212, 175, 55, 0);
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* ============================================
+   CINEMATIC LUXURY ANIMATIONS
+   ============================================ */
+
+@keyframes slow-zoom {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1.1);
+    }
+}
+
+@keyframes fade-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(60px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes luxury-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+    }
+
+    50% {
+        box-shadow: 0 0 40px rgba(212, 175, 55, 0.6), 0 0 60px rgba(212, 175, 55, 0.3);
+    }
+}
+
+/* Animation Utilities */
+.animate-slow-zoom {
+    animation: slow-zoom 20s ease-in-out infinite alternate;
+}
+
+.animate-fade-in-up {
+    animation: fade-in-up 1.2s ease-out both;
+}
+
+.animate-luxury-glow {
+    animation: luxury-glow 3s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+        border-color: rgba(212, 175, 55, 0.3);
+    }
+
+    50% {
+        box-shadow: 0 0 40px rgba(212, 175, 55, 0.4);
+        border-color: rgba(212, 175, 55, 0.6);
+    }
+}
+
+@keyframes kenBurns {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1.1);
+    }
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes borderGlow {
+
+    0%,
+    100% {
+        border-color: rgba(212, 175, 55, 0.2);
+    }
+
+    50% {
+        border-color: rgba(212, 175, 55, 0.5);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Animation Classes */
+.animate-fade-in-up {
+    animation: fadeInUp 0.8s var(--ease-elegant) forwards;
+}
+
+.animate-fade-in-down {
+    animation: fadeInDown 0.8s var(--ease-elegant) forwards;
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.8s var(--ease-smooth) forwards;
+}
+
+.animate-slide-in-right {
+    animation: slideInRight 0.8s var(--ease-elegant) forwards;
+}
+
+.animate-slide-in-left {
+    animation: slideInLeft 0.8s var(--ease-elegant) forwards;
+}
+
+.animate-shimmer {
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+}
+
+.animate-pulse-gold {
+    animation: pulse-gold 2s infinite;
+}
+
+.animate-float {
+    animation: float 4s ease-in-out infinite;
+}
+
+.animate-glow-pulse {
+    animation: glowPulse 3s ease-in-out infinite;
+}
+
+.animate-ken-burns {
+    animation: kenBurns 20s ease-out forwards;
+}
+
+.animate-scale-in {
+    animation: scaleIn 0.6s var(--ease-elegant) forwards;
+}
+
+/* Animation Delays - تأخير الحركة */
+.animate-delay-100 {
+    animation-delay: 100ms;
+}
+
+.animate-delay-200 {
+    animation-delay: 200ms;
+}
+
+.animate-delay-300 {
+    animation-delay: 300ms;
+}
+
+.animate-delay-400 {
+    animation-delay: 400ms;
+}
+
+.animate-delay-500 {
+    animation-delay: 500ms;
+}
+
+.animate-delay-600 {
+    animation-delay: 600ms;
+}
+
+.animate-delay-700 {
+    animation-delay: 700ms;
+}
+
+.animate-delay-800 {
+    animation-delay: 800ms;
+}
+
+/* ============================================
+   LOADING STATES - حالات التحميل
+   ============================================ */
+
+.skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s ease-in-out infinite;
+}
+
+.dark .skeleton {
+    background: linear-gradient(90deg, #1E293B 25%, #334155 50%, #1E293B 75%);
+    background-size: 200% 100%;
+}
+
+.spinner {
+    border: 3px solid rgba(212, 175, 55, 0.1);
+    border-top-color: var(--color-royal-gold);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+/* ============================================
+   CUSTOM SCROLLBAR - شريط التمرير
+   ============================================ */
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-royal-gold);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-royal-gold-dark);
+}
+
+/* ============================================
+   FOCUS STYLES - أنماط التركيز (Accessibility)
+   ============================================ */
+
+*:focus-visible {
+    outline: 2px solid var(--color-royal-gold);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+/* ============================================
+   GRADIENT UTILITIES - أدوات التدرج
+   ============================================ */
+
+.text-gradient-gold {
+    background: linear-gradient(135deg, #D4AF37 0%, #F5EFDB 50%, #D4AF37 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% auto;
+    animation: shimmer 3s linear infinite;
+}
+
+.bg-gradient-luxury {
+    background: linear-gradient(135deg, #0A1628 0%, #1E293B 50%, #2D3748 100%);
+}
+
+.bg-gradient-gold {
+    background: linear-gradient(135deg, #D4AF37 0%, #E8C84A 50%, #D4AF37 100%);
+}
+
+.bg-gradient-cream {
+    background: linear-gradient(135deg, #FAF9F6 0%, #FFFFFF 100%);
+}
+
+/* Dark Mode Gradients */
+.dark .bg-gradient-luxury {
+    background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #334155 100%);
+}
+
+/* ============================================
+   BACKDROP BLUR - ضبابية الخلفية
+   ============================================ */
+
+.backdrop-blur-luxury {
+    backdrop-filter: blur(12px) saturate(180%);
+    background-color: rgba(255, 255, 255, 0.95);
+}
+
+.dark .backdrop-blur-luxury {
+    background-color: rgba(15, 23, 42, 0.95);
+}
+
+/* ============================================
+   CARD STYLES - أنماط البطاقات
+   ============================================ */
+
+.card-luxury {
+    background: var(--bg-card);
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px -1px var(--shadow-color);
+    transition: all var(--duration-normal) var(--ease-smooth);
+}
+
+.card-luxury:hover {
+    box-shadow: 0 20px 25px -5px var(--shadow-color-strong);
+    transform: translateY(-4px);
+}
+
+/* ============================================
+   BUTTON STYLES - أنماط الأزرار
+   ============================================ */
+
+.btn-luxury {
+    background: var(--color-royal-gold);
+    color: var(--color-midnight);
+    padding: 0.75rem 2rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    transition: all var(--duration-normal) var(--ease-smooth);
+    box-shadow: 0 4px 6px -1px var(--shadow-gold);
+}
+
+.btn-luxury:hover {
+    background: var(--color-royal-gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px var(--shadow-gold-strong);
+}
+
+.btn-luxury:active {
+    transform: translateY(0);
+}
+
+/* ============================================
+   UTILITY CLASSES - فئات الأدوات
+   ============================================ */
+
+/* Hide Scrollbar */
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* Border Utilities */
+.border-3 {
+    border-width: 3px;
+}
+
+.border-b-3 {
+    border-bottom-width: 3px;
+}
+
+/* Text Shadow */
+.text-shadow {
+    text-shadow: 0 2px 4px var(--shadow-color);
+}
+
+.text-shadow-gold {
+    text-shadow: 0 2px 8px var(--shadow-gold);
+}
+
+/* Glass Effect */
+.glass-effect {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark .glass-effect {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ============================================
+   RTL SUPPORT - دعم اللغة العربية
+   ============================================ */
+
+[dir="rtl"] .rtl\:space-x-reverse> :not([hidden])~ :not([hidden]) {
+    --tw-space-x-reverse: 1;
+}
+
+[dir="rtl"] .rtl\:flex-row-reverse {
+    flex-direction: row-reverse;
+}
+
+/* RTL Scrollable Flex Container - حاوية التمرير في RTL */
+[dir="rtl"] .flex.overflow-x-auto {
+    flex-direction: row-reverse;
+}
+
+/* ============================================
+   RESPONSIVE UTILITIES - أدوات متجاوبة
+   ============================================ */
+
+@media (max-width: 768px) {
+    :root {
+        --nav-height: 64px;
+        --section-padding: 3rem;
+    }
+}
+
+/* ============================================
+   PRINT STYLES - أنماط الطباعة
+   ============================================ */
+
+@media print {
+    .no-print {
+        display: none !important;
+    }
+
+    body {
+        background: white;
+        color: black;
+    }
+}
+
+
+/* ============================================
+   LUXURY SECTION BACKGROUNDS - خلفيات الأقسام الفاخرة
+   ============================================ */
+
+.section-luxury {
+    position: relative;
+    overflow: hidden;
+}
+
+.section-luxury::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+}
+
+/* Categories Section */
+.section-categories {
+    background:
+        radial-gradient(ellipse at top right, rgba(212, 175, 55, 0.06) 0%, transparent 50%),
+        radial-gradient(ellipse at bottom left, rgba(212, 175, 55, 0.04) 0%, transparent 50%),
+        linear-gradient(180deg, #FAF9F6 0%, #FFFFFF 50%, #F8F6F3 100%);
+}
+
+.dark .section-categories {
+    background:
+        radial-gradient(ellipse at top right, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+        radial-gradient(ellipse at bottom left, rgba(212, 175, 55, 0.06) 0%, transparent 50%),
+        linear-gradient(180deg, #0F172A 0%, #1A2234 50%, #0F172A 100%);
+}
+
+/* Stores Section */
+.section-stores {
+    background: linear-gradient(180deg, #FFFFFF 0%, #FAFAFA 50%, #F5F3F0 100%);
+    position: relative;
+}
+
+.section-stores::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 5%;
+    right: 5%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.4), transparent);
+}
+
+.dark .section-stores {
+    background: linear-gradient(180deg, #1A2234 0%, #0F172A 50%, #1A2234 100%);
+}
+
+.dark .section-stores::before {
+    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), transparent);
+}
+
+/* ============================================
+   LUXURY CATEGORY CARDS - بطاقات الفئات الفاخرة
+   ============================================ */
+
+.category-card-luxury {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.95) 0%, rgba(250, 249, 246, 0.98) 100%);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(212, 175, 55, 0.15);
+    border-radius: 24px;
+    padding: 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+        0 4px 24px rgba(0, 0, 0, 0.04),
+        0 1px 3px rgba(0, 0, 0, 0.02),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.category-card-luxury::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, transparent 0%, rgba(212, 175, 55, 0.03) 100%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.category-card-luxury:hover {
+    transform: translateY(-12px) scale(1.02);
+    border-color: rgba(212, 175, 55, 0.4);
+    box-shadow:
+        0 24px 64px rgba(212, 175, 55, 0.12),
+        0 12px 32px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.category-card-luxury:hover::before {
+    opacity: 1;
+}
+
+/* Dark Mode */
+.dark .category-card-luxury {
+    background: linear-gradient(145deg, rgba(26, 34, 52, 0.9) 0%, rgba(36, 48, 68, 0.95) 100%);
+    border: 1px solid rgba(212, 175, 55, 0.12);
+    box-shadow:
+        0 4px 24px rgba(0, 0, 0, 0.3),
+        0 0 40px rgba(212, 175, 55, 0.03),
+        inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+.dark .category-card-luxury:hover {
+    border-color: rgba(212, 175, 55, 0.35);
+    box-shadow:
+        0 24px 64px rgba(0, 0, 0, 0.4),
+        0 0 80px rgba(212, 175, 55, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* ============================================
+   LUXURY ICON CONTAINER - حاوية الأيقونات الفاخرة
+   ============================================ */
+
+.icon-luxury {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem;
+    background: linear-gradient(135deg, #D4AF37 0%, #F5E6A3 40%, #D4AF37 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow:
+        0 8px 32px rgba(212, 175, 55, 0.25),
+        inset 0 2px 4px rgba(255, 255, 255, 0.3);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: float 4s ease-in-out infinite;
+}
+
+.icon-luxury svg,
+.icon-luxury img {
+    width: 40px;
+    height: 40px;
+    color: #0A1628;
+}
+
+.category-card-luxury:hover .icon-luxury {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow:
+        0 12px 48px rgba(212, 175, 55, 0.35),
+        0 0 60px rgba(212, 175, 55, 0.2),
+        inset 0 2px 4px rgba(255, 255, 255, 0.4);
+    animation: none;
+}
+
+/* ============================================
+   LUXURY STORE CARDS - بطاقات المتاجر الفاخرة
+   ============================================ */
+
+.store-card-luxury {
+    background: linear-gradient(145deg, #FFFFFF 0%, #FAFAFA 100%);
+    border-radius: 28px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow:
+        0 4px 24px rgba(0, 0, 0, 0.06),
+        0 1px 3px rgba(0, 0, 0, 0.04);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.store-card-luxury::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background: linear-gradient(135deg, #0A1628 0%, #1E293B 50%, #2D3748 100%);
+}
+
+.store-card-luxury:hover {
+    transform: translateY(-10px);
+    box-shadow:
+        0 24px 64px rgba(0, 0, 0, 0.12),
+        0 0 40px rgba(212, 175, 55, 0.08);
+}
+
+.dark .store-card-luxury {
+    background: linear-gradient(145deg, #1A2234 0%, #243044 100%);
+    border: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.dark .store-card-luxury::before {
+    background: linear-gradient(135deg, #0A1628 0%, #0F172A 50%, #1A2234 100%);
+}
+
+.dark .store-card-luxury:hover {
+    border-color: rgba(212, 175, 55, 0.25);
+    box-shadow:
+        0 24px 64px rgba(0, 0, 0, 0.4),
+        0 0 60px rgba(212, 175, 55, 0.1);
+}
+
+/* Store Logo */
+.store-logo-luxury {
+    position: relative;
+    z-index: 10;
+    margin-top: 50px;
+    width: 100px;
+    height: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 50%;
+    border: 4px solid white;
+    background: white;
+    overflow: hidden;
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.15),
+        0 0 0 4px rgba(212, 175, 55, 0.15);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.store-card-luxury:hover .store-logo-luxury {
+    transform: scale(1.08);
+    box-shadow:
+        0 12px 48px rgba(0, 0, 0, 0.2),
+        0 0 0 4px rgba(212, 175, 55, 0.4),
+        0 0 60px rgba(212, 175, 55, 0.15);
+}
+
+.dark .store-logo-luxury {
+    border-color: #1A2234;
+    background: #1A2234;
+}
+
+/* ============================================
+   LUXURY FOOTER - الفوتر الفاخر
+   ============================================ */
+
+.footer-luxury {
+    background: linear-gradient(180deg, #0A1628 0%, #050B14 100%);
+    position: relative;
+}
+
+.footer-luxury::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.5), transparent);
+}
+
+.social-icon-luxury {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(212, 175, 55, 0.08);
+    border: 1px solid rgba(212, 175, 55, 0.15);
+    border-radius: 50%;
+    color: rgba(255, 255, 255, 0.7);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.social-icon-luxury:hover {
+    background: rgba(212, 175, 55, 0.15);
+    border-color: rgba(212, 175, 55, 0.4);
+    color: #D4AF37;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(212, 175, 55, 0.2);
+}
+
+/* ============================================
+   SCROLL REVEAL - كشف عند التمرير
+   ============================================ */
+
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal-on-scroll.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.reveal-scale {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal-scale.revealed {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Stagger delays for grid items */
+.stagger-item {
+    transition-delay: 0ms;
+}
+
+.stagger-item:nth-child(1) {
+    transition-delay: 0ms;
+}
+
+.stagger-item:nth-child(2) {
+    transition-delay: 100ms;
+}
+
+.stagger-item:nth-child(3) {
+    transition-delay: 200ms;
+}
+
+.stagger-item:nth-child(4) {
+    transition-delay: 300ms;
+}
+
+.stagger-item:nth-child(5) {
+    transition-delay: 400ms;
+}
+
+.stagger-item:nth-child(6) {
+    transition-delay: 500ms;
+}
+
+/* ============================================
+   LUXURY BUTTONS - الأزرار الفاخرة
+   ============================================ */
+
+.btn-luxury-primary {
+    background: linear-gradient(135deg, #D4AF37 0%, #E8C84A 50%, #D4AF37 100%);
+    background-size: 200% auto;
+    color: #0A1628;
+    padding: 0.875rem 2rem;
+    border-radius: 12px;
+    font-weight: 600;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+        0 4px 16px rgba(212, 175, 55, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-luxury-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.btn-luxury-primary:hover {
+    background-position: right center;
+    transform: translateY(-2px);
+    box-shadow:
+        0 8px 32px rgba(212, 175, 55, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.btn-luxury-primary:hover::before {
+    left: 100%;
+}
+
+.btn-luxury-secondary {
+    background: transparent;
+    color: var(--text-primary);
+    padding: 0.875rem 2rem;
+    border-radius: 12px;
+    font-weight: 600;
+    border: 2px solid rgba(212, 175, 55, 0.3);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-luxury-secondary:hover {
+    border-color: rgba(212, 175, 55, 0.6);
+    background: rgba(212, 175, 55, 0.08);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(212, 175, 55, 0.15);
+}
+
+/* ============================================
+   SECTION DIVIDERS - فواصل الأقسام
+   ============================================ */
+
+.section-divider {
+    width: 100px;
+    height: 3px;
+    margin: 0 auto;
+    background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+    border-radius: 2px;
+    position: relative;
+}
+
+.section-divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    background: #D4AF37;
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+}
+
+/* ============================================
+   GLASSMORPHISM EFFECTS - تأثيرات الزجاج
+   ============================================ */
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+}
+
+.dark .glass-card {
+    background: rgba(26, 34, 52, 0.7);
+    border: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+/* ============================================
+   HERO ENHANCEMENTS - تحسينات البانر
+   ============================================ */
+
+.hero-overlay-luxury {
+    background: linear-gradient(180deg,
+            rgba(10, 22, 40, 0.3) 0%,
+            rgba(10, 22, 40, 0.5) 50%,
+            rgba(10, 22, 40, 0.85) 100%);
+}
+
+.hero-title-luxury {
+    text-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.3),
+        0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.hero-subtitle-luxury {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Navigation Dots */
+.nav-dot-luxury {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    border: 2px solid transparent;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-dot-luxury:hover {
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.nav-dot-luxury.active {
+    width: 36px;
+    border-radius: 6px;
+    background: #D4AF37;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+}
+
+/* ============================================
+   LOADING SHIMMER - تأثير التحميل
+   ============================================ */
+
+.shimmer-luxury {
+    background: linear-gradient(90deg,
+            rgba(212, 175, 55, 0.05) 0%,
+            rgba(212, 175, 55, 0.15) 50%,
+            rgba(212, 175, 55, 0.05) 100%);
+    background-size: 200% 100%;
+    animation: shimmer 2s ease-in-out infinite;
+}
+
+.dark .shimmer-luxury {
+    background: linear-gradient(90deg,
+            rgba(212, 175, 55, 0.03) 0%,
+            rgba(212, 175, 55, 0.1) 50%,
+            rgba(212, 175, 55, 0.03) 100%);
+    background-size: 200% 100%;
+}

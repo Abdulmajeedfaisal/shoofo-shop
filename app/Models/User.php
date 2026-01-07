@@ -22,6 +22,7 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
+        'locale',
     ];
 
     /**
@@ -69,5 +70,37 @@ class User extends Authenticatable
     public function isCustomer(): bool
     {
         return $this->role === 'customer';
+    }
+
+    /**
+     * Get the merchant profile for the user
+     */
+    public function merchant()
+    {
+        return $this->hasOne(Merchant::class);
+    }
+
+    /**
+     * Get the user's cart
+     */
+    public function cart()
+    {
+        return $this->hasOne(Cart::class);
+    }
+
+    /**
+     * Get all orders for the user
+     */
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    /**
+     * Get or create cart for the user
+     */
+    public function getOrCreateCart()
+    {
+        return $this->cart()->firstOrCreate([]);
     }
 }

@@ -1,0 +1,25 @@
+<?php
+
+return [
+    'cart' => 'Shopping Cart',
+    'your_cart' => 'Your Cart',
+    'empty_cart' => 'Your cart is empty',
+    'continue_shopping' => 'Continue Shopping',
+    'item' => 'Item',
+    'items' => 'Items',
+    'subtotal' => 'Subtotal',
+    'tax' => 'Tax',
+    'shipping' => 'Shipping',
+    'total' => 'Total',
+    'proceed_to_checkout' => 'Proceed to Checkout',
+    'update_cart' => 'Update Cart',
+    'remove' => 'Remove',
+    'quantity' => 'Quantity',
+    'price' => 'Price',
+    'checkout' => 'Checkout',
+    'shipping_address' => 'Shipping Address',
+    'payment_method' => 'Payment Method',
+    'review_order' => 'Review Order',
+    'place_order' => 'Place Order',
+    'order_summary' => 'Order Summary',
+];

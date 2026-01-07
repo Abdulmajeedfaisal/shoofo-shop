@@ -1,27 +1,24 @@
 <x-guest-layout>
-    <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
-        {{ __('This is a secure area of the application. Please confirm your password before continuing.') }}
-    </div>
+    <h2 class="text-xl font-bold text-charcoal dark:text-white text-center mb-4">
+        {{ app()->getLocale() === 'ar' ? 'تأكيد كلمة المرور' : 'Confirm Password' }}
+    </h2>
 
-    <form method="POST" action="{{ route('password.confirm') }}">
+    <p class="text-sm text-slate dark:text-gray-400 text-center mb-4">
+        {{ app()->getLocale() === 'ar' 
+            ? 'هذه منطقة آمنة. يرجى تأكيد كلمة المرور قبل المتابعة.' 
+            : 'This is a secure area. Please confirm your password before continuing.' }}
+    </p>
+
+    <form method="POST" action="{{ route('password.confirm') }}" class="space-y-3">
         @csrf
 
-        <!-- Password -->
         <div>
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+            <x-text-input id="password" class="w-full py-2.5 px-4 text-sm rounded-xl border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:border-royal-gold focus:ring-royal-gold" type="password" name="password" required autocomplete="current-password" placeholder="{{ app()->getLocale() === 'ar' ? 'كلمة المرور' : 'Password' }}" />
+            <x-input-error :messages="$errors->get('password')" class="mt-1 text-xs" />
         </div>
 
-        <div class="flex justify-end mt-4">
-            <x-primary-button>
-                {{ __('Confirm') }}
-            </x-primary-button>
-        </div>
+        <button type="submit" class="w-full bg-gradient-to-r from-royal-gold to-gold-light text-midnight py-2.5 rounded-xl font-semibold text-sm hover:shadow-lg transition-all">
+            {{ app()->getLocale() === 'ar' ? 'تأكيد' : 'Confirm' }}
+        </button>
     </form>
 </x-guest-layout>

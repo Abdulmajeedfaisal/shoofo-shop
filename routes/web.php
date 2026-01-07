@@ -50,11 +50,6 @@ Route::get('/locale/{locale}', function ($locale) {
     return redirect()->back();
 })->name('locale.switch');
 
-// لوحة تحكم المستخدم العادي
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
 // صفحة انتظار موافقة التاجر
 Route::get('/merchant/pending', function () {
     // التحقق من أن المستخدم تاجر

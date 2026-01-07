@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Http\Middleware\EnsureMerchantApproved;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -10,7 +11,7 @@ use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
-use Filament\Widgets;
+use Filament\Navigation\NavigationGroup;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
@@ -25,11 +26,33 @@ class MerchantPanelProvider extends PanelProvider
         return $panel
             ->id('merchant')
             ->path('merchant')
-            ->login()
             ->brandName('SHOOFO Merchant')
+            ->brandLogo(asset('images/logo.png'))
+            ->darkModeBrandLogo(asset('images/logo-dark.png'))
+            ->favicon(asset('favicon.ico'))
             ->colors([
-                'primary' => Color::Blue,
+                'primary' => Color::Amber,
                 'success' => Color::Emerald,
+                'warning' => Color::Orange,
+                'danger' => Color::Rose,
+                'info' => Color::Blue,
+                'gray' => Color::Slate,
+            ])
+            ->font('Cairo')
+            ->navigationGroups([
+                NavigationGroup::make()
+                    ->label('لوحة التحكم')
+                    ->icon('heroicon-o-home'),
+                NavigationGroup::make()
+                    ->label('المنتجات')
+                    ->icon('heroicon-o-cube'),
+                NavigationGroup::make()
+                    ->label('الطلبات')
+                    ->icon('heroicon-o-shopping-cart'),
+                NavigationGroup::make()
+                    ->label('المتجر')
+                    ->icon('heroicon-o-building-storefront')
+                    ->collapsed(),
             ])
             ->discoverResources(in: app_path('Filament/Merchant/Resources'), for: 'App\\Filament\\Merchant\\Resources')
             ->discoverPages(in: app_path('Filament/Merchant/Pages'), for: 'App\\Filament\\Merchant\\Pages')
@@ -38,7 +61,10 @@ class MerchantPanelProvider extends PanelProvider
             ])
             ->discoverWidgets(in: app_path('Filament/Merchant/Widgets'), for: 'App\\Filament\\Merchant\\Widgets')
             ->widgets([
-                Widgets\AccountWidget::class,
+                \App\Filament\Merchant\Widgets\StoreStatsWidget::class,
+                \App\Filament\Merchant\Widgets\LatestProductsWidget::class,
+                \App\Filament\Merchant\Widgets\MerchantOrdersWidget::class,
+                \App\Filament\Merchant\Widgets\RevenueChartWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,
@@ -53,7 +79,13 @@ class MerchantPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
+                EnsureMerchantApproved::class,
             ])
-            ->authGuard('web');
+            ->authGuard('web')
+            ->sidebarCollapsibleOnDesktop()
+            ->maxContentWidth('full')
+            ->globalSearchKeyBindings(['command+k', 'ctrl+k'])
+            ->databaseNotifications()
+            ->databaseNotificationsPolling('30s');
     }
 }

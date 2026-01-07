@@ -6,7 +6,7 @@
     <!-- Product Image Container -->
     <div class="relative aspect-[4/3] overflow-hidden bg-cream">
         @if($product->primaryImage)
-            <img src="{{ $product->primaryImage->image }}" 
+            <img src="{{ $product->primaryImage->image_url }}" 
                  alt="{{ $product->name }}"
                  class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
         @else
@@ -40,9 +40,11 @@
         </h3>
         
         <!-- Category Name -->
+        @if($product->merchantCategory)
         <p class="text-sm text-slate mb-3">
             {{ app()->getLocale() === 'ar' && $product->merchantCategory->name_ar ? $product->merchantCategory->name_ar : $product->merchantCategory->name }}
         </p>
+        @endif
         
         <!-- Price -->
         <div class="flex items-center gap-2">

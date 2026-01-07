@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Banner extends Model
 {
@@ -13,6 +14,7 @@ class Banner extends Model
         'subtitle_ar',
         'image',
         'link',
+        'link_type',
         'order',
         'is_active',
         'start_date',
@@ -24,6 +26,24 @@ class Banner extends Model
         'start_date' => 'date',
         'end_date' => 'date',
     ];
+
+    /**
+     * Get the full URL for the image.
+     */
+    public function getImageUrlAttribute(): ?string
+    {
+        if (empty($this->image)) {
+            return null;
+        }
+
+        // If it's already a full URL, return as-is
+        if (str_starts_with($this->image, 'http://') || str_starts_with($this->image, 'https://')) {
+            return $this->image;
+        }
+
+        // Otherwise, it's a local storage path - use asset() for full URL
+        return asset('storage/' . $this->image);
+    }
 
     public function scopeActive($query)
     {

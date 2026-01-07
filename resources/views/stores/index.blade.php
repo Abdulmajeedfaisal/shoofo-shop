@@ -82,7 +82,7 @@
                             @if($store->logo)
                             <div class="w-24 h-24 rounded-2xl overflow-hidden border-4 border-white/20 shadow-2xl backdrop-blur-sm bg-white/10 flex items-center justify-center">
                                 <img 
-                                    src="{{ $store->logo }}" 
+                                    src="{{ $store->logo_url }}" 
                                     alt="{{ $storeName }}"
                                     class="w-20 h-20 object-contain"
                                 >

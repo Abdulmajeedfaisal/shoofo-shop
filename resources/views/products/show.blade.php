@@ -268,12 +268,12 @@
         <!-- Product Details -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-10" 
              x-data="{ 
-                 mainImage: '{{ $product->images->first() ? $product->images->first()->image : '' }}',
+                 mainImage: '{{ $product->images->first() ? $product->images->first()->image_url : '' }}',
                  currentIndex: 0,
                  quantity: 1,
                  maxQuantity: {{ $product->quantity }},
                  lightboxOpen: false,
-                 images: {{ json_encode($product->images->pluck('image')) }}
+                 images: {{ json_encode($product->images->map(fn($img) => $img->image_url)) }}
              }">            
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10">
                 <!-- Left Column: Image Gallery -->
@@ -309,10 +309,10 @@
                     @if($product->images->count() > 1)
                         <div class="grid grid-cols-5 sm:grid-cols-6 gap-2">
                             @foreach($product->images as $index => $image)
-                                <button @click="mainImage = '{{ $image->image }}'; currentIndex = {{ $index }}"
+                                <button @click="mainImage = '{{ $image->image_url }}'; currentIndex = {{ $index }}"
                                         :class="currentIndex === {{ $index }} ? 'ring-2 ring-royal-gold' : 'ring-1 ring-gray-200'"
                                         class="aspect-square bg-cream rounded-lg overflow-hidden hover:ring-2 hover:ring-royal-gold transition-all">
-                                    <img src="{{ $image->image }}" alt="{{ $product->name }}" class="w-full h-full object-cover">
+                                    <img src="{{ $image->image_url }}" alt="{{ $product->name }}" class="w-full h-full object-cover">
                                 </button>
                             @endforeach
                         </div>
@@ -396,12 +396,12 @@
                         </form>
                     @endif
 
-                    @if($product->description)
+                    @if($product->description || $product->description_ar)
                         <div class="border-t border-gray-200 dark:border-gray-700 pt-4">
                             <h3 class="text-lg font-playfair font-semibold text-charcoal dark:text-white mb-2">{{ app()->getLocale() === 'ar' ? 'الوصف' : 'Description' }}</h3>
-                            <p class="text-slate dark:text-gray-300 leading-relaxed text-sm whitespace-pre-line">
-                                {{ app()->getLocale() === 'ar' && $product->description_ar ? $product->description_ar : $product->description }}
-                            </p>
+                            <div class="text-slate dark:text-gray-300 leading-relaxed text-sm prose prose-sm max-w-none">
+                                {!! app()->getLocale() === 'ar' && $product->description_ar ? $product->description_ar : $product->description !!}
+                            </div>
                         </div>
                     @endif
                 </div>

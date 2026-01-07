@@ -9,7 +9,7 @@
         <div class="relative mb-4 aspect-[4/3] bg-cream rounded-lg overflow-hidden">
             @if($product->primaryImage)
             <img 
-                src="{{ $product->primaryImage->image }}" 
+                src="{{ $product->primaryImage->image_url }}" 
                 alt="{{ app()->getLocale() === 'ar' ? $product->name_ar : $product->name }}"
                 class="w-full h-full object-cover group-hover:scale-105 transition-elegant duration-500"
                 loading="lazy"

@@ -211,7 +211,7 @@ function bannerSlider(totalSlides) {
                 <!-- Banner Image with Ken Burns Effect -->
                 <div class="absolute inset-0 animate-ken-burns">
                     <img 
-                        src="{{ $banner->image }}" 
+                        src="{{ $banner->image_url }}" 
                         alt="{{ app()->getLocale() === 'ar' ? $banner->title_ar : $banner->title }}"
                         class="w-full h-full object-cover"
                     >
@@ -463,7 +463,7 @@ function bannerSlider(totalSlides) {
                             @if($store->logo)
                             <div class="w-28 h-28 rounded-2xl border-4 border-white dark:border-gray-800 shadow-2xl overflow-hidden bg-white group-hover:scale-110 group-hover:border-royal-gold group-hover:shadow-royal-gold/50 transition-all duration-700 group-hover:rotate-2">
                                 <img 
-                                    src="{{ $store->logo }}" 
+                                    src="{{ $store->logo_url }}" 
                                     alt="{{ app()->getLocale() === 'ar' ? $store->store_name_ar : $store->store_name }}"
                                     class="w-full h-full object-cover"
                                     onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'w-full h-full bg-gradient-to-br from-royal-gold to-royal-gold-light flex items-center justify-center\'><span class=\'text-4xl font-playfair font-bold text-midnight\'>{{ substr($store->store_name, 0, 1) }}</span></div>';"

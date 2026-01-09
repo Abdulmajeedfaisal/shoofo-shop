@@ -22,4 +22,13 @@ return [
     'review_order' => 'Review Order',
     'place_order' => 'Place Order',
     'order_summary' => 'Order Summary',
+    'added_successfully' => 'Product added to cart successfully',
+    'updated_successfully' => 'Cart updated successfully',
+    'removed_successfully' => 'Product removed from cart',
+    'cleared_successfully' => 'Cart cleared successfully',
+    'out_of_stock' => 'Sorry, this product is out of stock',
+    'insufficient_stock' => 'Sorry, requested quantity is not available',
+    'clear_cart' => 'Clear Cart',
+    'product' => 'Product',
+    'store' => 'Store',
 ];

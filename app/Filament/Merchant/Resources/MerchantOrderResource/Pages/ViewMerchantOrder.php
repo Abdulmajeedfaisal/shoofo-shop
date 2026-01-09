@@ -1,23 +1,23 @@
 <?php
 
-namespace App\Filament\Resources\OrderResource\Pages;
+namespace App\Filament\Merchant\Resources\MerchantOrderResource\Pages;
 
-use App\Filament\Resources\OrderResource;
-use App\Models\Order;
+use App\Filament\Merchant\Resources\MerchantOrderResource;
+use App\Models\MerchantOrder;
 use Filament\Actions;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\ViewRecord;
 
-class ViewOrder extends ViewRecord
+class ViewMerchantOrder extends ViewRecord
 {
-    protected static string $resource = OrderResource::class;
+    protected static string $resource = MerchantOrderResource::class;
 
     protected function getHeaderActions(): array
     {
         return [
             // زر الإجراء التالي - يظهر حسب الحالة الحالية
             Actions\Action::make('confirm')
-                ->label('تأكيد الطلب')
+                ->label('✅ تأكيد الطلب')
                 ->icon('heroicon-o-check-circle')
                 ->color('success')
                 ->size('lg')
@@ -28,11 +28,15 @@ class ViewOrder extends ViewRecord
                 ->modalSubmitActionLabel('نعم، تأكيد الطلب')
                 ->action(function () {
                     $this->record->update(['status' => 'confirmed']);
+                    $this->record->order->updateStatusFromMerchantOrders();
+                    
                     Notification::make()
                         ->title('تم تأكيد الطلب بنجاح')
+                        ->body('الطلب رقم ' . $this->record->sub_order_number)
                         ->success()
                         ->send();
-                    $this->refreshFormData(['status']);
+                        
+                    $this->redirect(MerchantOrderResource::getUrl('view', ['record' => $this->record]));
                 }),
 
             Actions\Action::make('process')
@@ -43,15 +47,19 @@ class ViewOrder extends ViewRecord
                 ->visible(fn () => $this->record->status === 'confirmed')
                 ->action(function () {
                     $this->record->update(['status' => 'processing']);
+                    $this->record->order->updateStatusFromMerchantOrders();
+                    
                     Notification::make()
                         ->title('تم بدء تجهيز الطلب')
+                        ->body('الطلب رقم ' . $this->record->sub_order_number)
                         ->success()
                         ->send();
-                    $this->refreshFormData(['status']);
+                        
+                    $this->redirect(MerchantOrderResource::getUrl('view', ['record' => $this->record]));
                 }),
 
             Actions\Action::make('ship')
-                ->label('تم الشحن')
+                ->label('🚚 تم الشحن')
                 ->icon('heroicon-o-truck')
                 ->color('info')
                 ->size('lg')
@@ -62,15 +70,19 @@ class ViewOrder extends ViewRecord
                 ->modalSubmitActionLabel('نعم، تم الشحن')
                 ->action(function () {
                     $this->record->update(['status' => 'shipped']);
+                    $this->record->order->updateStatusFromMerchantOrders();
+                    
                     Notification::make()
                         ->title('تم شحن الطلب')
+                        ->body('الطلب رقم ' . $this->record->sub_order_number)
                         ->success()
                         ->send();
-                    $this->refreshFormData(['status']);
+                        
+                    $this->redirect(MerchantOrderResource::getUrl('view', ['record' => $this->record]));
                 }),
 
             Actions\Action::make('deliver')
-                ->label('تم التسليم')
+                ->label('📦 تم التسليم')
                 ->icon('heroicon-o-check-badge')
                 ->color('success')
                 ->size('lg')
@@ -81,16 +93,16 @@ class ViewOrder extends ViewRecord
                 ->modalSubmitActionLabel('نعم، تم التسليم')
                 ->action(function () {
                     $this->record->update(['status' => 'delivered']);
+                    $this->record->order->updateStatusFromMerchantOrders();
+                    
                     Notification::make()
                         ->title('تم تسليم الطلب بنجاح')
+                        ->body('الطلب رقم ' . $this->record->sub_order_number)
                         ->success()
                         ->send();
-                    $this->refreshFormData(['status']);
+                        
+                    $this->redirect(MerchantOrderResource::getUrl('view', ['record' => $this->record]));
                 }),
-
-            Actions\EditAction::make()
-                ->label('تعديل')
-                ->icon('heroicon-o-pencil'),
 
             // زر الإلغاء
             Actions\Action::make('cancel')
@@ -98,18 +110,30 @@ class ViewOrder extends ViewRecord
                 ->icon('heroicon-o-x-circle')
                 ->color('danger')
                 ->outlined()
-                ->visible(fn () => !in_array($this->record->status, ['delivered', 'cancelled']))
+                ->visible(fn () => $this->record->canBeCancelled())
                 ->requiresConfirmation()
                 ->modalHeading('إلغاء الطلب')
-                ->modalDescription('هل أنت متأكد من إلغاء هذا الطلب؟')
+                ->modalDescription('هل أنت متأكد من إلغاء هذا الطلب؟ سيتم إعادة الكمية للمخزون.')
                 ->modalSubmitActionLabel('نعم، إلغاء الطلب')
                 ->action(function () {
                     $this->record->update(['status' => 'cancelled']);
+                    
+                    // إعادة الكمية للمخزون
+                    foreach ($this->record->items as $item) {
+                        if ($item->product) {
+                            $item->product->increment('quantity', $item->quantity);
+                        }
+                    }
+                    
+                    $this->record->order->updateStatusFromMerchantOrders();
+                    
                     Notification::make()
                         ->title('تم إلغاء الطلب')
+                        ->body('الطلب رقم ' . $this->record->sub_order_number)
                         ->danger()
                         ->send();
-                    $this->refreshFormData(['status']);
+                        
+                    $this->redirect(MerchantOrderResource::getUrl('view', ['record' => $this->record]));
                 }),
         ];
     }

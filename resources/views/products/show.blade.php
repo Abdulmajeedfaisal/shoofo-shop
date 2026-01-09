@@ -1,13 +1,13 @@
 <x-guest-luxury :title="$product->name . ' - ' . $merchant->store_name . ' - ' . config('app.name', 'SHOOFO')">
 
     @php
-        // Check if user came from category page (not from store page)
+        // Check if user came from category page, search page, or home (not from store page)
         $showCinematicEntrance = false;
         $referer = request()->headers->get('referer');
         if ($referer) {
             $refererPath = parse_url($referer, PHP_URL_PATH);
-            // Show cinematic entrance if coming from categories or home, but not from store
-            if ($refererPath && (str_contains($refererPath, '/categories') || $refererPath === '/' || $refererPath === '')) {
+            // Show cinematic entrance if coming from categories, search, or home, but not from store
+            if ($refererPath && (str_contains($refererPath, '/categories') || str_contains($refererPath, '/search') || $refererPath === '/' || $refererPath === '')) {
                 $showCinematicEntrance = true;
             }
         }
@@ -243,13 +243,23 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                     </svg>
                     
-                    @if($showCinematicEntrance && $product->globalCategory)
+                    @php
+                        $cameFromSearch = $referer && str_contains(parse_url($referer, PHP_URL_PATH) ?? '', '/search');
+                        $cameFromCategory = $referer && str_contains(parse_url($referer, PHP_URL_PATH) ?? '', '/categories');
+                    @endphp
+                    
+                    @if($cameFromSearch)
+                        {{-- User came from search page --}}
+                        <a href="{{ route('search') }}" class="text-slate dark:text-gray-400 hover:text-royal-gold transition-colors">
+                            {{ app()->getLocale() === 'ar' ? 'البحث' : 'Search' }}
+                        </a>
+                    @elseif($cameFromCategory && $product->globalCategory)
                         {{-- User came from categories page --}}
                         <a href="{{ route('categories.show', $product->globalCategory->slug) }}" class="text-slate dark:text-gray-400 hover:text-royal-gold transition-colors">
                             {{ app()->getLocale() === 'ar' && $product->globalCategory->name_ar ? $product->globalCategory->name_ar : $product->globalCategory->name }}
                         </a>
                     @else
-                        {{-- User came from store page --}}
+                        {{-- User came from store page or direct --}}
                         <a href="{{ route('stores.show', $merchant->slug) }}" class="text-slate dark:text-gray-400 hover:text-royal-gold transition-colors">
                             {{ app()->getLocale() === 'ar' && $merchant->store_name_ar ? $merchant->store_name_ar : $merchant->store_name }}
                         </a>

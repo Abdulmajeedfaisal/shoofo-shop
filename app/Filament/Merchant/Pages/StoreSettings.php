@@ -3,6 +3,7 @@
 namespace App\Filament\Merchant\Pages;
 
 use App\Models\Merchant;
+use App\Models\ShippingSetting;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Pages\Page;
@@ -48,11 +49,17 @@ class StoreSettings extends Page implements HasForms
             'logo' => $merchant->logo,
             'phone' => $merchant->phone,
             'address' => $merchant->address,
+            'shipping_type' => $merchant->shipping_type ?? 'free',
+            'shipping_cost' => $merchant->shipping_cost ?? 0,
+            'free_shipping_threshold' => $merchant->free_shipping_threshold,
         ]);
     }
 
     public function form(Form $form): Form
     {
+        $merchant = Auth::user()->merchant;
+        $canOverride = ShippingSetting::canMerchantManageShipping($merchant);
+        
         return $form
             ->schema([
                 Forms\Components\Section::make(__('معلومات المتجر الأساسية'))
@@ -112,6 +119,47 @@ class StoreSettings extends Page implements HasForms
                             ->maxLength(500),
                     ])
                     ->columns(2),
+
+                Forms\Components\Section::make(__('إعدادات الشحن'))
+                    ->description($canOverride 
+                        ? __('حدد تكلفة الشحن لمنتجاتك') 
+                        : __('إعدادات الشحن يتحكم بها مدير الموقع'))
+                    ->icon('heroicon-o-truck')
+                    ->schema([
+                        Forms\Components\Placeholder::make('shipping_notice')
+                            ->label('')
+                            ->content('⚠️ إعدادات الشحن يتحكم بها مدير الموقع حالياً')
+                            ->visible(!$canOverride),
+
+                        Forms\Components\Radio::make('shipping_type')
+                            ->label(__('نوع الشحن'))
+                            ->options([
+                                'free' => '🎁 شحن مجاني',
+                                'fixed' => '💰 شحن ثابت',
+                                'calculated' => '🎯 شحن مجاني فوق مبلغ معين',
+                            ])
+                            ->default('free')
+                            ->live()
+                            ->visible($canOverride)
+                            ->columnSpanFull(),
+
+                        Forms\Components\TextInput::make('shipping_cost')
+                            ->label(__('تكلفة الشحن (ريال)'))
+                            ->numeric()
+                            ->minValue(0)
+                            ->default(0)
+                            ->suffix('SAR')
+                            ->visible(fn (Forms\Get $get) => $canOverride && in_array($get('shipping_type'), ['fixed', 'calculated'])),
+
+                        Forms\Components\TextInput::make('free_shipping_threshold')
+                            ->label(__('الحد الأدنى للشحن المجاني (ريال)'))
+                            ->numeric()
+                            ->minValue(0)
+                            ->suffix('SAR')
+                            ->helperText(__('الطلبات فوق هذا المبلغ تحصل على شحن مجاني'))
+                            ->visible(fn (Forms\Get $get) => $canOverride && $get('shipping_type') === 'calculated'),
+                    ])
+                    ->columns(2),
             ])
             ->statePath('data');
     }
@@ -122,7 +170,7 @@ class StoreSettings extends Page implements HasForms
         
         $merchant = Auth::user()->merchant;
         
-        $merchant->update([
+        $updateData = [
             'store_name' => $data['store_name'],
             'store_name_ar' => $data['store_name_ar'],
             'description' => $data['description'],
@@ -130,7 +178,17 @@ class StoreSettings extends Page implements HasForms
             'logo' => $data['logo'],
             'phone' => $data['phone'],
             'address' => $data['address'],
-        ]);
+        ];
+
+        // إضافة إعدادات الشحن إذا كان مسموحاً
+        $canOverride = ShippingSetting::canMerchantManageShipping($merchant);
+        if ($canOverride) {
+            $updateData['shipping_type'] = $data['shipping_type'] ?? 'free';
+            $updateData['shipping_cost'] = $data['shipping_cost'] ?? 0;
+            $updateData['free_shipping_threshold'] = $data['free_shipping_threshold'] ?? null;
+        }
+        
+        $merchant->update($updateData);
 
         Notification::make()
             ->title(__('تم حفظ الإعدادات بنجاح'))

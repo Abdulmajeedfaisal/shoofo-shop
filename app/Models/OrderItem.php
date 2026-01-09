@@ -9,6 +9,7 @@ class OrderItem extends Model
 {
     protected $fillable = [
         'order_id',
+        'merchant_order_id',
         'product_id',
         'merchant_id',
         'product_name',
@@ -29,6 +30,14 @@ class OrderItem extends Model
     public function order(): BelongsTo
     {
         return $this->belongsTo(Order::class);
+    }
+
+    /**
+     * Get the merchant order (sub-order)
+     */
+    public function merchantOrder(): BelongsTo
+    {
+        return $this->belongsTo(MerchantOrder::class);
     }
 
     /**

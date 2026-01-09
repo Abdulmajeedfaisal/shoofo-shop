@@ -22,4 +22,13 @@ return [
     'review_order' => 'مراجعة الطلب',
     'place_order' => 'تأكيد الطلب',
     'order_summary' => 'ملخص الطلب',
+    'added_successfully' => 'تمت إضافة المنتج للسلة بنجاح',
+    'updated_successfully' => 'تم تحديث السلة بنجاح',
+    'removed_successfully' => 'تم حذف المنتج من السلة',
+    'cleared_successfully' => 'تم تفريغ السلة بنجاح',
+    'out_of_stock' => 'عذراً، هذا المنتج غير متوفر حالياً',
+    'insufficient_stock' => 'عذراً، الكمية المطلوبة غير متوفرة',
+    'clear_cart' => 'تفريغ السلة',
+    'product' => 'المنتج',
+    'store' => 'المتجر',
 ];

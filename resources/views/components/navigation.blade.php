@@ -16,7 +16,7 @@
             </div>
 
             <!-- Desktop Navigation -->
-            <div class="hidden lg:flex items-center gap-8">
+            <div class="hidden lg:flex items-center gap-6">
                 <a href="{{ route('home') }}" class="font-inter font-medium text-base text-charcoal dark:text-gray-300 hover:text-royal-gold transition-elegant relative group">
                     {{ app()->getLocale() === 'ar' ? 'الرئيسية' : 'Home' }}
                     <span class="absolute bottom-0 {{ app()->getLocale() === 'ar' ? 'right-0' : 'left-0' }} w-0 h-0.5 bg-royal-gold group-hover:w-full transition-all duration-300"></span>
@@ -32,11 +32,133 @@
             </div>
 
             <!-- Right Side -->
-            <div class="flex items-center gap-2 md:gap-4">
+            <div class="flex items-center gap-2 md:gap-3">
+                <!-- Expandable Search (Desktop) -->
+                <div x-data="expandableSearch()" class="hidden lg:block relative" @click.away="closeSearch()">
+                    <!-- Search Icon Button -->
+                    <button 
+                        x-show="!isOpen"
+                        @click="openSearch()"
+                        class="p-2.5 text-charcoal dark:text-gray-300 hover:text-royal-gold transition-elegant hover:bg-cream dark:hover:bg-gray-800 rounded-xl"
+                    >
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </button>
+                    
+                    <!-- Expanded Search Form -->
+                    <div 
+                        x-show="isOpen"
+                        x-transition:enter="transition ease-out duration-300"
+                        x-transition:enter-start="opacity-0 scale-95"
+                        x-transition:enter-end="opacity-100 scale-100"
+                        x-transition:leave="transition ease-in duration-200"
+                        x-transition:leave-start="opacity-100 scale-100"
+                        x-transition:leave-end="opacity-0 scale-95"
+                        class="absolute {{ app()->getLocale() === 'ar' ? 'left-0' : 'right-0' }} top-1/2 -translate-y-1/2 z-50"
+                        style="display: none;"
+                    >
+                        <form action="{{ route('search') }}" method="GET" class="relative">
+                            <input 
+                                type="text" 
+                                name="q" 
+                                x-ref="searchInput"
+                                x-model="query"
+                                @input.debounce.300ms="fetchSuggestions()"
+                                @keydown.escape="closeSearch()"
+                                placeholder="{{ app()->getLocale() === 'ar' ? 'ابحث عن منتجات، متاجر...' : 'Search products, stores...' }}"
+                                autocomplete="off"
+                                class="w-80 px-4 py-2.5 {{ app()->getLocale() === 'ar' ? 'pr-10 pl-10' : 'pl-10 pr-10' }} rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-charcoal dark:text-white placeholder-slate dark:placeholder-gray-400 focus:ring-2 focus:ring-royal-gold focus:border-transparent transition-all text-sm shadow-elegant-lg"
+                            >
+                            <button 
+                                type="submit"
+                                class="absolute {{ app()->getLocale() === 'ar' ? 'right-3' : 'left-3' }} top-1/2 -translate-y-1/2 text-royal-gold hover:text-royal-gold-dark transition-colors"
+                            >
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                </svg>
+                            </button>
+                            <button 
+                                type="button" 
+                                @click="closeSearch()"
+                                class="absolute {{ app()->getLocale() === 'ar' ? 'left-3' : 'right-3' }} top-1/2 -translate-y-1/2 text-slate hover:text-charcoal dark:hover:text-white transition-colors"
+                            >
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                </svg>
+                            </button>
+                        </form>
+                        
+                        <!-- Suggestions Dropdown -->
+                        <div x-show="showSuggestions && (suggestions.products.length > 0 || suggestions.stores.length > 0 || suggestions.categories.length > 0)"
+                             x-transition
+                             class="absolute top-full mt-2 w-full bg-white dark:bg-gray-800 rounded-xl shadow-elegant-lg border border-gray-100 dark:border-gray-700 overflow-hidden"
+                             style="display: none;">
+                            
+                            <!-- Products -->
+                            <template x-if="suggestions.products.length > 0">
+                                <div class="p-2 border-b border-gray-100 dark:border-gray-700">
+                                    <p class="text-xs text-slate dark:text-gray-400 px-2 mb-1">{{ app()->getLocale() === 'ar' ? 'المنتجات' : 'Products' }}</p>
+                                    <template x-for="item in suggestions.products" :key="item.url">
+                                        <a :href="item.url" class="flex items-center gap-2 px-2 py-2 hover:bg-cream dark:hover:bg-gray-700 rounded-lg transition-colors">
+                                            <svg class="w-4 h-4 text-royal-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+                                            </svg>
+                                            <span class="text-sm text-charcoal dark:text-white truncate" x-text="item.name"></span>
+                                        </a>
+                                    </template>
+                                </div>
+                            </template>
+                            
+                            <!-- Stores -->
+                            <template x-if="suggestions.stores.length > 0">
+                                <div class="p-2 border-b border-gray-100 dark:border-gray-700">
+                                    <p class="text-xs text-slate dark:text-gray-400 px-2 mb-1">{{ app()->getLocale() === 'ar' ? 'المتاجر' : 'Stores' }}</p>
+                                    <template x-for="item in suggestions.stores" :key="item.url">
+                                        <a :href="item.url" class="flex items-center gap-2 px-2 py-2 hover:bg-cream dark:hover:bg-gray-700 rounded-lg transition-colors">
+                                            <svg class="w-4 h-4 text-royal-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                                            </svg>
+                                            <span class="text-sm text-charcoal dark:text-white truncate" x-text="item.name"></span>
+                                        </a>
+                                    </template>
+                                </div>
+                            </template>
+                            
+                            <!-- Categories -->
+                            <template x-if="suggestions.categories.length > 0">
+                                <div class="p-2">
+                                    <p class="text-xs text-slate dark:text-gray-400 px-2 mb-1">{{ app()->getLocale() === 'ar' ? 'الفئات' : 'Categories' }}</p>
+                                    <template x-for="item in suggestions.categories" :key="item.url">
+                                        <a :href="item.url" class="flex items-center gap-2 px-2 py-2 hover:bg-cream dark:hover:bg-gray-700 rounded-lg transition-colors">
+                                            <svg class="w-4 h-4 text-royal-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
+                                            </svg>
+                                            <span class="text-sm text-charcoal dark:text-white truncate" x-text="item.name"></span>
+                                        </a>
+                                    </template>
+                                </div>
+                            </template>
+                            
+                            <!-- View All Results -->
+                            <a :href="'{{ route('search') }}?q=' + encodeURIComponent(query)" class="block px-4 py-3 bg-cream dark:bg-gray-700 text-center text-sm font-medium text-royal-gold hover:bg-royal-gold hover:text-midnight transition-colors">
+                                {{ app()->getLocale() === 'ar' ? 'عرض جميع النتائج' : 'View All Results' }}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Search Icon (Mobile) -->
+                <a href="{{ route('search') }}" class="lg:hidden p-2.5 text-charcoal dark:text-gray-300 hover:text-royal-gold transition-elegant hover:bg-cream dark:hover:bg-gray-800 rounded-xl">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                </a>
+                
                 <!-- Dark Mode Toggle -->
                 <button 
                     @click="darkMode = !darkMode" 
-                    class="p-2 text-charcoal dark:text-gray-300 hover:text-royal-gold transition-elegant hover:bg-cream dark:hover:bg-gray-800 rounded-lg"
+                    class="p-2.5 text-charcoal dark:text-gray-300 hover:text-royal-gold transition-elegant hover:bg-cream dark:hover:bg-gray-800 rounded-xl"
                 >
                     <svg x-show="darkMode" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
@@ -53,22 +175,24 @@
 
                 <!-- Cart Icon -->
                 @auth
-                <a href="{{ route('cart.index') }}" class="relative p-2 text-charcoal dark:text-gray-300 hover:text-royal-gold transition-elegant hover:bg-cream dark:hover:bg-gray-800 rounded-lg">
+                <a href="{{ route('cart.index') }}" id="nav-cart-link" class="relative p-2.5 text-charcoal dark:text-gray-300 hover:text-royal-gold transition-elegant hover:bg-cream dark:hover:bg-gray-800 rounded-xl">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
                     </svg>
-                    @if(auth()->user()->cart && auth()->user()->cart->items->count() > 0)
-                    <span class="absolute -top-1 {{ app()->getLocale() === 'ar' ? '-left-1' : '-right-1' }} bg-royal-gold text-midnight text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center shadow-md">
-                        {{ auth()->user()->cart->items->sum('quantity') }}
+                    @php
+                        $cartCount = auth()->user()->cart ? auth()->user()->cart->items->sum('quantity') : 0;
+                    @endphp
+                    <span id="nav-cart-badge" 
+                          class="absolute -top-1 {{ app()->getLocale() === 'ar' ? '-left-1' : '-right-1' }} bg-royal-gold text-midnight text-xs font-bold rounded-full w-5 h-5 items-center justify-center shadow-md {{ $cartCount > 0 ? 'flex' : 'hidden' }}">
+                        {{ $cartCount }}
                     </span>
-                    @endif
                 </a>
                 @endauth
 
                 <!-- User Menu (Desktop) -->
                 @auth
                 <div x-data="{ open: false }" class="relative hidden md:block">
-                    <button @click="open = !open" class="flex items-center gap-2 p-2 text-charcoal dark:text-gray-300 hover:text-royal-gold transition-elegant hover:bg-cream dark:hover:bg-gray-800 rounded-lg">
+                    <button @click="open = !open" class="flex items-center gap-2 p-2 text-charcoal dark:text-gray-300 hover:text-royal-gold transition-elegant hover:bg-cream dark:hover:bg-gray-800 rounded-xl">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                         </svg>
@@ -81,7 +205,7 @@
                         x-transition:enter="transition ease-out duration-200"
                         x-transition:enter-start="opacity-0 scale-95"
                         x-transition:enter-end="opacity-100 scale-100"
-                        class="absolute {{ app()->getLocale() === 'ar' ? 'left-0' : 'right-0' }} mt-2 w-48 bg-white dark:bg-gray-800 rounded-xl shadow-elegant-lg overflow-hidden border border-gray-100 dark:border-gray-700"
+                        class="absolute {{ app()->getLocale() === 'ar' ? 'left-0' : 'right-0' }} mt-2 w-48 bg-white dark:bg-gray-800 rounded-xl shadow-elegant-lg overflow-hidden border border-gray-100 dark:border-gray-700 z-50"
                         style="display: none;"
                     >
                         <div class="px-4 py-3 border-b border-gray-100 dark:border-gray-700">
@@ -134,7 +258,7 @@
                 <!-- Mobile Menu Button -->
                 <button 
                     @click="mobileMenuOpen = !mobileMenuOpen"
-                    class="lg:hidden p-2 text-charcoal dark:text-gray-300 hover:text-royal-gold transition-elegant hover:bg-cream dark:hover:bg-gray-800 rounded-lg"
+                    class="lg:hidden p-2 text-charcoal dark:text-gray-300 hover:text-royal-gold transition-elegant hover:bg-cream dark:hover:bg-gray-800 rounded-xl"
                 >
                     <svg x-show="!mobileMenuOpen" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
@@ -161,6 +285,21 @@
         style="display: none;"
     >
         <div class="max-w-7xl mx-auto px-4 py-4 space-y-2">
+            <!-- Mobile Search -->
+            <form action="{{ route('search') }}" method="GET" class="mb-4">
+                <div class="relative">
+                    <input type="text" 
+                           name="q" 
+                           placeholder="{{ app()->getLocale() === 'ar' ? 'ابحث عن منتجات، متاجر...' : 'Search products, stores...' }}"
+                           class="w-full px-4 py-3 {{ app()->getLocale() === 'ar' ? 'pr-12' : 'pl-12' }} rounded-xl border border-gray-200 dark:border-gray-700 bg-cream dark:bg-gray-800 text-charcoal dark:text-white placeholder-slate focus:ring-2 focus:ring-royal-gold focus:border-transparent">
+                    <button type="submit" class="absolute {{ app()->getLocale() === 'ar' ? 'right-4' : 'left-4' }} top-1/2 -translate-y-1/2 text-slate">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </form>
+            
             <!-- Navigation Links -->
             <a href="{{ route('home') }}" class="flex items-center gap-3 px-4 py-3 text-charcoal dark:text-gray-300 hover:bg-cream dark:hover:bg-gray-800 hover:text-royal-gold rounded-xl transition-elegant">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
@@ -209,6 +348,10 @@
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
                         {{ app()->getLocale() === 'ar' ? 'الملف الشخصي' : 'Profile' }}
                     </a>
+                    <a href="{{ route('orders.index') }}" class="flex items-center gap-3 px-4 py-3 text-charcoal dark:text-gray-300 hover:bg-cream dark:hover:bg-gray-800 hover:text-royal-gold rounded-xl transition-elegant">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                        {{ app()->getLocale() === 'ar' ? 'طلباتي' : 'My Orders' }}
+                    </a>
                     @if(auth()->user()->isMerchant())
                     <a href="/merchant" class="flex items-center gap-3 px-4 py-3 text-charcoal dark:text-gray-300 hover:bg-cream dark:hover:bg-gray-800 hover:text-royal-gold rounded-xl transition-elegant">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
@@ -242,3 +385,46 @@
         </div>
     </div>
 </nav>
+
+<script>
+function expandableSearch() {
+    return {
+        isOpen: false,
+        query: '',
+        showSuggestions: false,
+        suggestions: {
+            products: [],
+            stores: [],
+            categories: []
+        },
+        openSearch() {
+            this.isOpen = true;
+            this.$nextTick(() => {
+                this.$refs.searchInput.focus();
+            });
+        },
+        closeSearch() {
+            this.isOpen = false;
+            this.query = '';
+            this.showSuggestions = false;
+            this.suggestions = { products: [], stores: [], categories: [] };
+        },
+        async fetchSuggestions() {
+            if (this.query.length < 2) {
+                this.suggestions = { products: [], stores: [], categories: [] };
+                this.showSuggestions = false;
+                return;
+            }
+            
+            try {
+                const response = await fetch(`{{ route('search.suggestions') }}?q=${encodeURIComponent(this.query)}`);
+                const data = await response.json();
+                this.suggestions = data;
+                this.showSuggestions = true;
+            } catch (error) {
+                console.error('Search suggestions error:', error);
+            }
+        }
+    }
+}
+</script>

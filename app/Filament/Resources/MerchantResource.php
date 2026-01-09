@@ -166,10 +166,10 @@ class MerchantResource extends Resource
                                 Forms\Components\Select::make('status')
                                     ->label('حالة المتجر')
                                     ->options([
-                                        'pending' => '⏳ قيد المراجعة',
-                                        'approved' => '✅ معتمد',
-                                        'rejected' => '❌ مرفوض',
-                                        'suspended' => '🚫 موقوف',
+                                        'pending' => 'قيد المراجعة',
+                                        'approved' => 'معتمد',
+                                        'rejected' => 'مرفوض',
+                                        'suspended' => 'موقوف',
                                     ])
                                     ->required()
                                     ->default('pending')
@@ -178,6 +178,12 @@ class MerchantResource extends Resource
                                 Forms\Components\Toggle::make('is_featured')
                                     ->label('متجر مميز')
                                     ->helperText('سيظهر في قسم المتاجر المميزة'),
+                                
+                                Forms\Components\Toggle::make('can_manage_shipping')
+                                    ->label('يمكنه إدارة الشحن')
+                                    ->helperText('السماح للتاجر بتحديد أسعار الشحن الخاصة به')
+                                    ->onColor('success')
+                                    ->offColor('gray'),
                                 
                                 Forms\Components\DateTimePicker::make('approved_at')
                                     ->label('تاريخ الموافقة')
@@ -256,6 +262,15 @@ class MerchantResource extends Resource
                     ->falseIcon('heroicon-o-star')
                     ->trueColor('warning')
                     ->falseColor('gray'),
+                
+                Tables\Columns\IconColumn::make('can_manage_shipping')
+                    ->label('إدارة الشحن')
+                    ->boolean()
+                    ->trueIcon('heroicon-o-truck')
+                    ->falseIcon('heroicon-o-truck')
+                    ->trueColor('success')
+                    ->falseColor('gray')
+                    ->toggleable(isToggledHiddenByDefault: true),
                 
                 Tables\Columns\TextColumn::make('approved_at')
                     ->label('تاريخ الموافقة')

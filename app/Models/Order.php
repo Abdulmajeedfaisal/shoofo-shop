@@ -53,6 +53,14 @@ class Order extends Model
     }
 
     /**
+     * Get all merchant orders (sub-orders)
+     */
+    public function merchantOrders(): HasMany
+    {
+        return $this->hasMany(MerchantOrder::class);
+    }
+
+    /**
      * Generate unique order number
      */
     public static function generateOrderNumber(): string
@@ -70,5 +78,50 @@ class Order extends Model
     public function scopeByStatus($query, $status)
     {
         return $query->where('status', $status);
+    }
+
+    /**
+     * Update main order status based on merchant orders
+     */
+    public function updateStatusFromMerchantOrders(): void
+    {
+        $merchantOrders = $this->merchantOrders;
+        
+        if ($merchantOrders->isEmpty()) {
+            return;
+        }
+
+        // إذا كانت كل الطلبات الفرعية ملغية
+        if ($merchantOrders->every(fn ($mo) => $mo->status === 'cancelled')) {
+            $this->update(['status' => 'cancelled']);
+            return;
+        }
+
+        // إذا كانت كل الطلبات الفرعية مسلمة
+        if ($merchantOrders->where('status', '!=', 'cancelled')->every(fn ($mo) => $mo->status === 'delivered')) {
+            $this->update(['status' => 'delivered']);
+            return;
+        }
+
+        // إذا كان أي طلب فرعي مشحون
+        if ($merchantOrders->contains('status', 'shipped')) {
+            $this->update(['status' => 'shipped']);
+            return;
+        }
+
+        // إذا كان أي طلب فرعي قيد التجهيز
+        if ($merchantOrders->contains('status', 'processing')) {
+            $this->update(['status' => 'processing']);
+            return;
+        }
+
+        // إذا كان أي طلب فرعي مؤكد
+        if ($merchantOrders->contains('status', 'confirmed')) {
+            $this->update(['status' => 'confirmed']);
+            return;
+        }
+
+        // الافتراضي: قيد الانتظار
+        $this->update(['status' => 'pending']);
     }
 }

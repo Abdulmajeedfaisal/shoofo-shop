@@ -21,11 +21,18 @@ class Merchant extends Model
         'status',
         'is_featured',
         'approved_at',
+        'shipping_type',
+        'shipping_cost',
+        'free_shipping_threshold',
+        'can_manage_shipping',
     ];
 
     protected $casts = [
         'approved_at' => 'datetime',
         'is_featured' => 'boolean',
+        'shipping_cost' => 'decimal:2',
+        'free_shipping_threshold' => 'decimal:2',
+        'can_manage_shipping' => 'boolean',
     ];
 
     public function user()
@@ -41,6 +48,14 @@ class Merchant extends Model
     public function products()
     {
         return $this->hasMany(Product::class);
+    }
+
+    /**
+     * Get all merchant orders (sub-orders) for this merchant
+     */
+    public function merchantOrders()
+    {
+        return $this->hasMany(MerchantOrder::class);
     }
 
     public function isApproved(): bool

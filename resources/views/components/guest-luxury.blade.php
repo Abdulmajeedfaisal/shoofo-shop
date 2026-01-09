@@ -24,6 +24,9 @@
     <!-- Alpine.js -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     
+    <!-- jQuery (for plugins) -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    
     @stack('styles')
 </head>
 <body class="font-inter antialiased bg-white dark:bg-gray-900 transition-smooth">

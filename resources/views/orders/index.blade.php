@@ -6,7 +6,7 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
                 <nav class="flex items-center gap-2 text-sm">
                     <a href="{{ route('home') }}" class="text-slate dark:text-gray-400 hover:text-royal-gold transition-colors">
-                        {{ app()->getLocale() === 'ar' ? 'الرئيسية' : 'Home' }}
+                        {{ __('general.home') }}
                     </a>
                     <svg class="w-4 h-4 text-slate {{ app()->getLocale() === 'ar' ? 'rotate-180' : '' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>

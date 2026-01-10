@@ -26,10 +26,10 @@ class MerchantPanelProvider extends PanelProvider
         return $panel
             ->id('merchant')
             ->path('merchant')
-            ->brandName('SHOOFO Merchant')
-            ->brandLogo(asset('images/logo.png'))
-            ->darkModeBrandLogo(asset('images/logo-dark.png'))
-            ->favicon(asset('favicon.ico'))
+            ->brandName(fn () => auth()->user()?->merchant?->store_name ?? 'SHOOFO Merchant')
+            ->brandLogo(fn () => auth()->user()?->merchant?->logo_url ?? asset('images/logo_shoofo_shop_1.png'))
+            ->darkModeBrandLogo(fn () => auth()->user()?->merchant?->logo_url ?? asset('images/logo_shoofo_shop_in_dark.png'))
+            ->favicon(asset('favicon.png'))
             ->colors([
                 'primary' => Color::Amber,
                 'success' => Color::Emerald,

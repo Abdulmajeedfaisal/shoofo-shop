@@ -28,9 +28,9 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->brandName('SHOOFO Admin')
-            ->brandLogo(asset('images/logo.png'))
-            ->darkModeBrandLogo(asset('images/logo-dark.png'))
-            ->favicon(asset('favicon.ico'))
+            ->brandLogo(asset('images/logo_shoofo_shop_1.png'))
+            ->darkModeBrandLogo(asset('images/logo_shoofo_shop_in_dark.png'))
+            ->favicon(asset('favicon.png'))
             ->colors([
                 'primary' => Color::Emerald,
                 'danger' => Color::Rose,

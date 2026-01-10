@@ -2,7 +2,7 @@
 
 @push('styles')
 <style>
-    /* ✨ Luxury Sparkle Floating Animation - Same as Store Page */
+    /* ✨ Luxury Sparkle Floating Animation */
     @keyframes sparkle-float {
         0% {
             transform: translateY(0) scale(0) rotate(0deg);
@@ -37,7 +37,7 @@
         animation: ken-burns 25s ease-in-out infinite;
     }
     
-    /* ✨ SMOOTH BANNER TRANSITIONS - Simple & Professional */
+    /* ✨ SMOOTH BANNER TRANSITIONS */
     .banner-slide {
         transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
     }
@@ -291,7 +291,7 @@ function bannerSlider(totalSlides) {
     <div class="relative -mt-12 mb-8 flex justify-center z-30">
         <div class="text-slate/60 dark:text-gray-400 animate-bounce">
             <div class="flex flex-col items-center gap-2">
-                <span class="text-sm uppercase tracking-widest font-semibold">{{ app()->getLocale() === 'ar' ? 'استكشف' : 'Explore' }}</span>
+                <span class="text-sm uppercase tracking-widest font-semibold">{{ __('general.explore') }}</span>
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
                 </svg>
@@ -330,22 +330,8 @@ function bannerSlider(totalSlides) {
                     <!-- Background Image with Parallax Effect -->
                     <div class="absolute inset-0 transition-transform duration-700 group-hover:scale-110">
                         @php
-                            // Dynamic background images based on category - high-quality Unsplash
-                            $bgImages = [
-                                'fashion' => 'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800&h=1000&fit=crop&q=90',
-                                'electronic' => 'https://images.unsplash.com/photo-1468495244123-6c6c332eeece?w=800&h=1000&fit=crop&q=90',
-                                'sport' => 'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=800&h=1000&fit=crop&q=90',
-                                'fitness' => 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&h=1000&fit=crop&q=90',
-                                'accessor' => 'https://images.unsplash.com/photo-1492707892479-7bc8d5a4ee93?w=800&h=1000&fit=crop&q=90',
-                            ];
-                            
-                            $bgImage = 'https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=800&h=1000&fit=crop&q=90'; // default
-                            foreach($bgImages as $key => $url) {
-                                if(str_contains($category->slug, $key)) {
-                                    $bgImage = $url;
-                                    break;
-                                }
-                            }
+                            // Use category image if available, otherwise fallback to default
+                            $bgImage = $category->image_url ?? 'https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=800&h=1000&fit=crop&q=90';
                         @endphp
                         <img 
                             src="{{ $bgImage }}" 
@@ -380,7 +366,7 @@ function bannerSlider(totalSlides) {
                         
                         <!-- Explore Button -->
                         <div class="flex items-center gap-2 text-royal-gold font-bold text-lg opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-700 delay-200" style="text-shadow: 0 1px 4px rgba(0,0,0,0.6);">
-                            <span>{{ app()->getLocale() === 'ar' ? 'استكشف' : 'Explore' }}</span>
+                            <span>{{ __('general.explore') }}</span>
                             <svg class="w-5 h-5 {{ app()->getLocale() === 'ar' ? 'rotate-180' : '' }} transform group-hover:translate-x-2 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                             </svg>
@@ -492,7 +478,7 @@ function bannerSlider(totalSlides) {
                             </p>
                             @else
                             <p class="text-slate dark:text-gray-400 text-sm md:text-base mb-6 leading-relaxed opacity-60">
-                                {{ app()->getLocale() === 'ar' ? 'اكتشف مجموعتنا الحصرية' : 'Discover our exclusive collection' }}
+                                {{ __('general.discover_collection') }}
                             </p>
                             @endif
 

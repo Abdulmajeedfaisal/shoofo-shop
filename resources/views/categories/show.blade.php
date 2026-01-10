@@ -8,13 +8,13 @@
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
                     </svg>
-                    {{ app()->getLocale() === 'ar' ? 'الرئيسية' : 'Home' }}
+                    {{ __('general.home') }}
                 </a>
                 <svg class="w-4 h-4 text-slate {{ app()->getLocale() === 'ar' ? 'rotate-180' : '' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                 </svg>
                 <a href="{{ route('categories.index') }}" class="text-slate hover:text-royal-gold transition-elegant">
-                    {{ app()->getLocale() === 'ar' ? 'الفئات' : 'Categories' }}
+                    {{ __('navigation.categories') }}
                 </a>
                 <svg class="w-4 h-4 text-slate {{ app()->getLocale() === 'ar' ? 'rotate-180' : '' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
@@ -71,7 +71,7 @@
                         </h1>
                         <p class="text-white/80 text-sm md:text-base flex items-center gap-2">
                             <span class="font-bold text-royal-gold">{{ $totalProducts }}</span>
-                            {{ app()->getLocale() === 'ar' ? 'منتج' : 'products' }}
+                            {{ __('general.products_label') }}
                             @if($search)
                                 <span class="text-white/60">•</span>
                                 <span>{{ app()->getLocale() === 'ar' ? 'نتائج البحث عن' : 'Results for' }} "{{ $search }}"</span>
@@ -96,7 +96,7 @@
                                 <svg class="w-5 h-5 text-royal-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"></path>
                                 </svg>
-                                {{ app()->getLocale() === 'ar' ? 'الفلاتر والبحث' : 'Filters & Search' }}
+                                {{ __('general.filters') }}
                             </span>
                             <svg class="w-5 h-5 transition-transform" :class="{ 'rotate-180': filtersOpen }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
@@ -128,10 +128,10 @@
                             @if($categoryStores->count() > 1)
                             <div>
                                 <h3 class="font-semibold text-charcoal dark:text-white mb-3">
-                                    {{ app()->getLocale() === 'ar' ? 'المتجر' : 'Store' }}
+                                    {{ __('general.store') }}
                                 </h3>
                                 <select name="store" class="w-full px-4 py-2.5 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-charcoal dark:text-white focus:ring-2 focus:ring-royal-gold focus:border-transparent text-sm">
-                                    <option value="">{{ app()->getLocale() === 'ar' ? 'جميع المتاجر' : 'All Stores' }}</option>
+                                    <option value="">{{ __('general.all_stores') }}</option>
                                     @foreach($categoryStores as $st)
                                         <option value="{{ $st->id }}" {{ $selectedStore == $st->id ? 'selected' : '' }}>
                                             {{ app()->getLocale() === 'ar' && $st->store_name_ar ? $st->store_name_ar : $st->store_name }}
@@ -145,7 +145,7 @@
                             <!-- Price Range -->
                             <div>
                                 <h3 class="font-semibold text-charcoal dark:text-white mb-3">
-                                    {{ app()->getLocale() === 'ar' ? 'نطاق السعر' : 'Price Range' }}
+                                    {{ __('general.price_range') }}
                                 </h3>
                                 <div class="flex items-center gap-2">
                                     <input type="number" 
@@ -168,21 +168,21 @@
                             <div>
                                 <label class="flex items-center gap-2 cursor-pointer">
                                     <input type="checkbox" name="in_stock" value="1" {{ $inStock ? 'checked' : '' }} class="rounded text-royal-gold focus:ring-royal-gold">
-                                    <span class="text-charcoal dark:text-gray-300 text-sm">{{ app()->getLocale() === 'ar' ? 'متوفر فقط' : 'In Stock Only' }}</span>
+                                    <span class="text-charcoal dark:text-gray-300 text-sm">{{ __('general.in_stock_only') }}</span>
                                 </label>
                             </div>
                             
                             <!-- Sort -->
                             <div>
                                 <h3 class="font-semibold text-charcoal dark:text-white mb-3">
-                                    {{ app()->getLocale() === 'ar' ? 'الترتيب' : 'Sort By' }}
+                                    {{ __('general.sort_by') }}
                                 </h3>
                                 <select name="sort" class="w-full px-4 py-2.5 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-charcoal dark:text-white focus:ring-2 focus:ring-royal-gold focus:border-transparent text-sm">
-                                    <option value="featured" {{ $sort === 'featured' ? 'selected' : '' }}>{{ app()->getLocale() === 'ar' ? 'مميز' : 'Featured' }}</option>
-                                    <option value="newest" {{ $sort === 'newest' ? 'selected' : '' }}>{{ app()->getLocale() === 'ar' ? 'الأحدث' : 'Newest' }}</option>
-                                    <option value="price_low" {{ $sort === 'price_low' ? 'selected' : '' }}>{{ app()->getLocale() === 'ar' ? 'السعر: من الأقل' : 'Price: Low to High' }}</option>
-                                    <option value="price_high" {{ $sort === 'price_high' ? 'selected' : '' }}>{{ app()->getLocale() === 'ar' ? 'السعر: من الأعلى' : 'Price: High to Low' }}</option>
-                                    <option value="popular" {{ $sort === 'popular' ? 'selected' : '' }}>{{ app()->getLocale() === 'ar' ? 'الأكثر مشاهدة' : 'Most Viewed' }}</option>
+                                    <option value="featured" {{ $sort === 'featured' ? 'selected' : '' }}>{{ __('general.featured') }}</option>
+                                    <option value="newest" {{ $sort === 'newest' ? 'selected' : '' }}>{{ __('general.newest') }}</option>
+                                    <option value="price_low" {{ $sort === 'price_low' ? 'selected' : '' }}>{{ __('general.price_low_high') }}</option>
+                                    <option value="price_high" {{ $sort === 'price_high' ? 'selected' : '' }}>{{ __('general.price_high_low') }}</option>
+                                    <option value="popular" {{ $sort === 'popular' ? 'selected' : '' }}>{{ __('general.most_viewed') }}</option>
                                 </select>
                             </div>
                             
@@ -191,13 +191,13 @@
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"></path>
                                 </svg>
-                                {{ app()->getLocale() === 'ar' ? 'تطبيق الفلاتر' : 'Apply Filters' }}
+                                {{ __('general.apply_filters') }}
                             </button>
                             
                             <!-- Clear Filters -->
                             @if($search || $selectedStore || $minPrice || $maxPrice || $inStock || $sort !== 'featured')
                             <a href="{{ route('categories.show', $globalCategory->slug) }}" class="block w-full text-center text-slate hover:text-royal-gold transition-colors text-sm">
-                                {{ app()->getLocale() === 'ar' ? 'مسح الفلاتر' : 'Clear Filters' }}
+                                {{ __('general.clear_filters') }}
                             </a>
                             @endif
                         </form>
@@ -209,7 +209,7 @@
                     <!-- Active Filters Tags -->
                     @if($search || $selectedStore || $minPrice || $maxPrice || $inStock)
                     <div class="mb-6 flex flex-wrap items-center gap-2">
-                        <span class="text-sm text-slate dark:text-gray-400">{{ app()->getLocale() === 'ar' ? 'الفلاتر النشطة:' : 'Active filters:' }}</span>
+                        <span class="text-sm text-slate dark:text-gray-400">{{ __('general.active_filters') }}</span>
                         
                         @if($search)
                         <a href="{{ route('categories.show', array_merge(['slug' => $globalCategory->slug], request()->except('q'))) }}" class="inline-flex items-center gap-1 px-3 py-1 bg-royal-gold/10 text-royal-gold rounded-full text-sm hover:bg-royal-gold/20 transition-colors">
@@ -235,7 +235,7 @@
                         
                         @if($inStock)
                         <a href="{{ route('categories.show', array_merge(['slug' => $globalCategory->slug], request()->except('in_stock'))) }}" class="inline-flex items-center gap-1 px-3 py-1 bg-royal-gold/10 text-royal-gold rounded-full text-sm hover:bg-royal-gold/20 transition-colors">
-                            {{ app()->getLocale() === 'ar' ? 'متوفر فقط' : 'In Stock' }}
+                            {{ __('general.in_stock_only') }}
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                         </a>
                         @endif

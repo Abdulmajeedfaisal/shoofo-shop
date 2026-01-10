@@ -6,7 +6,7 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-6">
                     <h1 class="text-3xl md:text-4xl font-playfair font-bold mb-4">
-                        {{ app()->getLocale() === 'ar' ? 'البحث' : 'Search' }}
+                        {{ __('general.search') }}
                     </h1>
                 </div>
                 
@@ -16,7 +16,7 @@
                         <input type="text" 
                                name="q" 
                                value="{{ $query }}"
-                               placeholder="{{ app()->getLocale() === 'ar' ? 'ابحث عن منتجات، متاجر...' : 'Search for products, stores...' }}"
+                               placeholder="{{ __('general.search_placeholder') }}"
                                class="w-full px-6 py-4 {{ app()->getLocale() === 'ar' ? 'pr-14' : 'pl-14' }} rounded-2xl bg-white/10 backdrop-blur-md border-2 border-white/20 text-white placeholder-white/60 focus:border-royal-gold focus:ring-2 focus:ring-royal-gold/50 transition-all text-lg"
                                autocomplete="off">
                         <button type="submit" class="absolute {{ app()->getLocale() === 'ar' ? 'right-4' : 'left-4' }} top-1/2 -translate-y-1/2 text-white/60 hover:text-royal-gold transition-colors">
@@ -79,7 +79,7 @@
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"></path>
                                 </svg>
-                                {{ app()->getLocale() === 'ar' ? 'الفلاتر' : 'Filters' }}
+                                {{ __('general.filters') }}
                             </span>
                             <svg class="w-5 h-5 transition-transform" :class="{ 'rotate-180': filtersOpen }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
@@ -92,20 +92,20 @@
                             <!-- Type Filter -->
                             <div>
                                 <h3 class="font-semibold text-charcoal dark:text-white mb-3">
-                                    {{ app()->getLocale() === 'ar' ? 'نوع البحث' : 'Search Type' }}
+                                    {{ __('general.search_type') }}
                                 </h3>
                                 <div class="space-y-2">
                                     <label class="flex items-center gap-2 cursor-pointer">
                                         <input type="radio" name="type" value="all" {{ $type === 'all' ? 'checked' : '' }} class="text-royal-gold focus:ring-royal-gold">
-                                        <span class="text-charcoal dark:text-gray-300">{{ app()->getLocale() === 'ar' ? 'الكل' : 'All' }}</span>
+                                        <span class="text-charcoal dark:text-gray-300">{{ __('general.all') }}</span>
                                     </label>
                                     <label class="flex items-center gap-2 cursor-pointer">
                                         <input type="radio" name="type" value="products" {{ $type === 'products' ? 'checked' : '' }} class="text-royal-gold focus:ring-royal-gold">
-                                        <span class="text-charcoal dark:text-gray-300">{{ app()->getLocale() === 'ar' ? 'المنتجات' : 'Products' }}</span>
+                                        <span class="text-charcoal dark:text-gray-300">{{ __('products.products') }}</span>
                                     </label>
                                     <label class="flex items-center gap-2 cursor-pointer">
                                         <input type="radio" name="type" value="stores" {{ $type === 'stores' ? 'checked' : '' }} class="text-royal-gold focus:ring-royal-gold">
-                                        <span class="text-charcoal dark:text-gray-300">{{ app()->getLocale() === 'ar' ? 'المتاجر' : 'Stores' }}</span>
+                                        <span class="text-charcoal dark:text-gray-300">{{ __('navigation.stores') }}</span>
                                     </label>
                                 </div>
                             </div>
@@ -113,10 +113,10 @@
                             <!-- Category Filter -->
                             <div>
                                 <h3 class="font-semibold text-charcoal dark:text-white mb-3">
-                                    {{ app()->getLocale() === 'ar' ? 'الفئة' : 'Category' }}
+                                    {{ __('general.category') }}
                                 </h3>
                                 <select name="category" class="w-full px-4 py-2.5 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-charcoal dark:text-white focus:ring-2 focus:ring-royal-gold focus:border-transparent">
-                                    <option value="">{{ app()->getLocale() === 'ar' ? 'جميع الفئات' : 'All Categories' }}</option>
+                                    <option value="">{{ __('general.all_categories') }}</option>
                                     @foreach($categories as $cat)
                                         <option value="{{ $cat->id }}" {{ $selectedCategory == $cat->id ? 'selected' : '' }}>
                                             {{ app()->getLocale() === 'ar' && $cat->name_ar ? $cat->name_ar : $cat->name }}
@@ -128,10 +128,10 @@
                             <!-- Store Filter -->
                             <div>
                                 <h3 class="font-semibold text-charcoal dark:text-white mb-3">
-                                    {{ app()->getLocale() === 'ar' ? 'المتجر' : 'Store' }}
+                                    {{ __('general.store') }}
                                 </h3>
                                 <select name="store" class="w-full px-4 py-2.5 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-charcoal dark:text-white focus:ring-2 focus:ring-royal-gold focus:border-transparent">
-                                    <option value="">{{ app()->getLocale() === 'ar' ? 'جميع المتاجر' : 'All Stores' }}</option>
+                                    <option value="">{{ __('general.all_stores') }}</option>
                                     @foreach($allStores as $st)
                                         <option value="{{ $st->id }}" {{ $selectedStore == $st->id ? 'selected' : '' }}>
                                             {{ app()->getLocale() === 'ar' && $st->store_name_ar ? $st->store_name_ar : $st->store_name }}
@@ -143,12 +143,12 @@
                             <!-- Price Range -->
                             <div>
                                 <h3 class="font-semibold text-charcoal dark:text-white mb-3">
-                                    {{ app()->getLocale() === 'ar' ? 'نطاق السعر' : 'Price Range' }}
+                                    {{ __('general.price_range') }}
                                 </h3>
                                 <div class="flex items-center gap-2">
-                                    <input type="number" name="min_price" value="{{ $minPrice }}" placeholder="{{ app()->getLocale() === 'ar' ? 'من' : 'Min' }}" min="0" class="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-charcoal dark:text-white focus:ring-2 focus:ring-royal-gold focus:border-transparent text-sm">
+                                    <input type="number" name="min_price" value="{{ $minPrice }}" placeholder="{{ __('general.min') }}" min="0" class="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-charcoal dark:text-white focus:ring-2 focus:ring-royal-gold focus:border-transparent text-sm">
                                     <span class="text-slate">-</span>
-                                    <input type="number" name="max_price" value="{{ $maxPrice }}" placeholder="{{ app()->getLocale() === 'ar' ? 'إلى' : 'Max' }}" min="0" class="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-charcoal dark:text-white focus:ring-2 focus:ring-royal-gold focus:border-transparent text-sm">
+                                    <input type="number" name="max_price" value="{{ $maxPrice }}" placeholder="{{ __('general.max') }}" min="0" class="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-charcoal dark:text-white focus:ring-2 focus:ring-royal-gold focus:border-transparent text-sm">
                                 </div>
                             </div>
                             
@@ -156,33 +156,33 @@
                             <div>
                                 <label class="flex items-center gap-2 cursor-pointer">
                                     <input type="checkbox" name="in_stock" value="1" {{ $inStock ? 'checked' : '' }} class="rounded text-royal-gold focus:ring-royal-gold">
-                                    <span class="text-charcoal dark:text-gray-300">{{ app()->getLocale() === 'ar' ? 'متوفر فقط' : 'In Stock Only' }}</span>
+                                    <span class="text-charcoal dark:text-gray-300">{{ __('general.in_stock_only') }}</span>
                                 </label>
                             </div>
                             
                             <!-- Sort -->
                             <div>
                                 <h3 class="font-semibold text-charcoal dark:text-white mb-3">
-                                    {{ app()->getLocale() === 'ar' ? 'الترتيب' : 'Sort By' }}
+                                    {{ __('general.sort_by') }}
                                 </h3>
                                 <select name="sort" class="w-full px-4 py-2.5 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-charcoal dark:text-white focus:ring-2 focus:ring-royal-gold focus:border-transparent">
-                                    <option value="relevance" {{ $sort === 'relevance' ? 'selected' : '' }}>{{ app()->getLocale() === 'ar' ? 'الأكثر صلة' : 'Relevance' }}</option>
-                                    <option value="newest" {{ $sort === 'newest' ? 'selected' : '' }}>{{ app()->getLocale() === 'ar' ? 'الأحدث' : 'Newest' }}</option>
-                                    <option value="price_low" {{ $sort === 'price_low' ? 'selected' : '' }}>{{ app()->getLocale() === 'ar' ? 'السعر: من الأقل' : 'Price: Low to High' }}</option>
-                                    <option value="price_high" {{ $sort === 'price_high' ? 'selected' : '' }}>{{ app()->getLocale() === 'ar' ? 'السعر: من الأعلى' : 'Price: High to Low' }}</option>
-                                    <option value="popular" {{ $sort === 'popular' ? 'selected' : '' }}>{{ app()->getLocale() === 'ar' ? 'الأكثر مشاهدة' : 'Most Viewed' }}</option>
+                                    <option value="relevance" {{ $sort === 'relevance' ? 'selected' : '' }}>{{ __('general.relevance') }}</option>
+                                    <option value="newest" {{ $sort === 'newest' ? 'selected' : '' }}>{{ __('general.newest') }}</option>
+                                    <option value="price_low" {{ $sort === 'price_low' ? 'selected' : '' }}>{{ __('general.price_low_high') }}</option>
+                                    <option value="price_high" {{ $sort === 'price_high' ? 'selected' : '' }}>{{ __('general.price_high_low') }}</option>
+                                    <option value="popular" {{ $sort === 'popular' ? 'selected' : '' }}>{{ __('general.most_viewed') }}</option>
                                 </select>
                             </div>
                             
                             <!-- Apply Button -->
                             <button type="submit" class="w-full bg-gradient-gold text-midnight py-3 rounded-xl font-semibold hover:scale-[1.02] transition-all">
-                                {{ app()->getLocale() === 'ar' ? 'تطبيق الفلاتر' : 'Apply Filters' }}
+                                {{ __('general.apply_filters') }}
                             </button>
                             
                             <!-- Clear Filters -->
                             @if($selectedCategory || $selectedStore || $minPrice || $maxPrice || $inStock || $sort !== 'relevance')
                             <a href="{{ route('search', ['q' => $query]) }}" class="block w-full text-center text-slate hover:text-royal-gold transition-colors text-sm">
-                                {{ app()->getLocale() === 'ar' ? 'مسح الفلاتر' : 'Clear Filters' }}
+                                {{ __('general.clear_filters') }}
                             </a>
                             @endif
                         </form>
@@ -194,7 +194,7 @@
                     <!-- Active Filters Tags -->
                     @if($selectedCategory || $selectedStore || $minPrice || $maxPrice || $inStock || $type !== 'all')
                     <div class="mb-6 flex flex-wrap items-center gap-2">
-                        <span class="text-sm text-slate dark:text-gray-400">{{ app()->getLocale() === 'ar' ? 'الفلاتر النشطة:' : 'Active filters:' }}</span>
+                        <span class="text-sm text-slate dark:text-gray-400">{{ __('general.active_filters') }}</span>
                         
                         @if($type !== 'all')
                         <a href="{{ route('search', array_merge(request()->except('type'), ['type' => 'all'])) }}" class="inline-flex items-center gap-1 px-3 py-1 bg-royal-gold/10 text-royal-gold rounded-full text-sm hover:bg-royal-gold/20 transition-colors">
@@ -243,12 +243,12 @@
                                     <svg class="w-6 h-6 text-royal-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
                                     </svg>
-                                    {{ app()->getLocale() === 'ar' ? 'المتاجر' : 'Stores' }}
+                                    {{ __('navigation.stores') }}
                                     <span class="text-sm font-normal text-slate">({{ $storesCount }})</span>
                                 </h2>
                                 @if($type === 'all' && $storesCount > 6)
                                 <a href="{{ route('search', array_merge(request()->query(), ['type' => 'stores'])) }}" class="text-royal-gold hover:underline text-sm font-medium">
-                                    {{ app()->getLocale() === 'ar' ? 'عرض الكل' : 'View All' }}
+                                    {{ __('general.view_all') }}
                                 </a>
                                 @endif
                             </div>

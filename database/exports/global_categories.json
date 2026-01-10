@@ -1,0 +1,54 @@
+[
+    {
+        "id": 1,
+        "name": "Fashion & Clothing",
+        "name_ar": "الأزياء والملابس",
+        "slug": "fashion-clothing",
+        "icon": null,
+        "description": "Discover the latest trends in fashion",
+        "description_ar": "اكتشف أحدث صيحات الموضة",
+        "order": 1,
+        "is_active": 1,
+        "created_at": "2026-01-05 03:25:55",
+        "updated_at": "2026-01-05 03:25:55"
+    },
+    {
+        "id": 2,
+        "name": "Electronics",
+        "name_ar": "الإلكترونيات",
+        "slug": "electronics",
+        "icon": null,
+        "description": "Latest technology and gadgets",
+        "description_ar": "أحدث التقنيات والأجهزة",
+        "order": 2,
+        "is_active": 1,
+        "created_at": "2026-01-05 03:25:55",
+        "updated_at": "2026-01-05 03:25:55"
+    },
+    {
+        "id": 3,
+        "name": "Sports & Fitness",
+        "name_ar": "الرياضة واللياقة",
+        "slug": "sports-fitness",
+        "icon": null,
+        "description": "Everything for your active lifestyle",
+        "description_ar": "كل ما تحتاجه لنمط حياة نشط",
+        "order": 3,
+        "is_active": 1,
+        "created_at": "2026-01-05 03:25:55",
+        "updated_at": "2026-01-05 03:25:55"
+    },
+    {
+        "id": 4,
+        "name": "Accessories",
+        "name_ar": "الإكسسوارات",
+        "slug": "accessories",
+        "icon": null,
+        "description": "Complete your look with perfect accessories",
+        "description_ar": "أكمل إطلالتك بالإكسسوارات المثالية",
+        "order": 4,
+        "is_active": 1,
+        "created_at": "2026-01-05 03:25:55",
+        "updated_at": "2026-01-05 03:25:55"
+    }
+]

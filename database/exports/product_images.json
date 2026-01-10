@@ -1,0 +1,92 @@
+[
+    {
+        "id": 1,
+        "product_id": 1,
+        "image": "https:\/\/images.unsplash.com\/photo-1566174053879-31528523f8ae?w=800&h=800&fit=crop&q=80",
+        "order": 1,
+        "is_primary": 1,
+        "created_at": "2026-01-05 03:25:56",
+        "updated_at": "2026-01-05 03:25:56"
+    },
+    {
+        "id": 2,
+        "product_id": 2,
+        "image": "https:\/\/images.unsplash.com\/photo-1507679799987-c73779587ccf?w=800&h=800&fit=crop&q=80",
+        "order": 1,
+        "is_primary": 1,
+        "created_at": "2026-01-05 03:25:56",
+        "updated_at": "2026-01-05 03:25:56"
+    },
+    {
+        "id": 3,
+        "product_id": 3,
+        "image": "https:\/\/images.unsplash.com\/photo-1606107557195-0e29a4b5b4aa?w=800&h=800&fit=crop&q=80",
+        "order": 1,
+        "is_primary": 1,
+        "created_at": "2026-01-05 03:25:56",
+        "updated_at": "2026-01-05 03:25:56"
+    },
+    {
+        "id": 4,
+        "product_id": 4,
+        "image": "https:\/\/images.unsplash.com\/photo-1556821840-3a63f95609a7?w=800&h=800&fit=crop&q=80",
+        "order": 1,
+        "is_primary": 1,
+        "created_at": "2026-01-05 03:25:56",
+        "updated_at": "2026-01-05 03:25:56"
+    },
+    {
+        "id": 5,
+        "product_id": 5,
+        "image": "https:\/\/images.unsplash.com\/photo-1510557880182-3d4d3cba35a5?w=800&h=800&fit=crop&q=80",
+        "order": 1,
+        "is_primary": 1,
+        "created_at": "2026-01-05 03:25:56",
+        "updated_at": "2026-01-05 03:25:56"
+    },
+    {
+        "id": 6,
+        "product_id": 6,
+        "image": "https:\/\/images.unsplash.com\/photo-1517336714731-489689fd1ca8?w=800&h=800&fit=crop&q=80",
+        "order": 1,
+        "is_primary": 1,
+        "created_at": "2026-01-05 03:25:56",
+        "updated_at": "2026-01-05 03:25:56"
+    },
+    {
+        "id": 7,
+        "product_id": 7,
+        "image": "https:\/\/images.unsplash.com\/photo-1521572163474-6864f9cf17ab?w=800&h=800&fit=crop&q=80",
+        "order": 1,
+        "is_primary": 1,
+        "created_at": "2026-01-05 03:25:56",
+        "updated_at": "2026-01-05 03:25:56"
+    },
+    {
+        "id": 8,
+        "product_id": 8,
+        "image": "https:\/\/images.unsplash.com\/photo-1542272604-787c3835535d?w=800&h=800&fit=crop&q=80",
+        "order": 1,
+        "is_primary": 1,
+        "created_at": "2026-01-05 03:25:56",
+        "updated_at": "2026-01-05 03:25:56"
+    },
+    {
+        "id": 9,
+        "product_id": 9,
+        "image": "products\/01KEB85PKTPNV9N1JG1DKC6DMX.jpg",
+        "order": 0,
+        "is_primary": 1,
+        "created_at": "2026-01-07 03:31:56",
+        "updated_at": "2026-01-07 03:31:56"
+    },
+    {
+        "id": 10,
+        "product_id": 9,
+        "image": "products\/01KEB85PN12KV87BKP90WG0SQG.jpg",
+        "order": 0,
+        "is_primary": 0,
+        "created_at": "2026-01-07 03:31:56",
+        "updated_at": "2026-01-07 03:31:56"
+    }
+]

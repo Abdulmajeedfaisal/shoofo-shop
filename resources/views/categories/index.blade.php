@@ -33,22 +33,8 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
                 @foreach($globalCategories as $index => $category)
                 @php
-                    // Premium background images based on category
-                    $bgImages = [
-                        'fashion' => 'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800&h=1000&fit=crop&q=90',
-                        'electronic' => 'https://images.unsplash.com/photo-1468495244123-6c6c332eeece?w=800&h=1000&fit=crop&q=90',
-                        'sport' => 'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=800&h=1000&fit=crop&q=90',
-                        'fitness' => 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&h=1000&fit=crop&q=90',
-                        'accessor' => 'https://images.unsplash.com/photo-1492707892479-7bc8d5a4ee93?w=800&h=1000&fit=crop&q=90',
-                    ];
-                    
-                    $bgImage = 'https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=800&h=1000&fit=crop&q=90'; // default
-                    foreach($bgImages as $key => $url) {
-                        if(str_contains($category->slug, $key)) {
-                            $bgImage = $url;
-                            break;
-                        }
-                    }
+                    // Use category image if available, otherwise fallback to default
+                    $bgImage = $category->image_url ?? 'https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=800&h=1000&fit=crop&q=90';
                 @endphp
                 
                 <a 

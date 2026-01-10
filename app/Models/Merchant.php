@@ -16,6 +16,7 @@ class Merchant extends Model
         'description',
         'description_ar',
         'logo',
+        'cover_image',
         'phone',
         'address',
         'status',
@@ -92,6 +93,29 @@ class Merchant extends Model
 
                 // Otherwise, it's a local storage path
                 return Storage::url($this->logo);
+            }
+        );
+    }
+
+    /**
+     * Get the cover image URL.
+     * Handles both external URLs and local storage paths.
+     */
+    protected function coverImageUrl(): Attribute
+    {
+        return Attribute::make(
+            get: function () {
+                if (empty($this->cover_image)) {
+                    return null;
+                }
+
+                // If it's already a full URL, return as-is
+                if (str_starts_with($this->cover_image, 'http://') || str_starts_with($this->cover_image, 'https://')) {
+                    return $this->cover_image;
+                }
+
+                // Otherwise, it's a local storage path
+                return Storage::url($this->cover_image);
             }
         );
     }

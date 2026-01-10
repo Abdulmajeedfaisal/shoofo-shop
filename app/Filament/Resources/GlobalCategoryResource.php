@@ -63,13 +63,25 @@ class GlobalCategoryResource extends Resource
                                     ->required()
                                     ->unique(GlobalCategory::class, 'slug', ignoreRecord: true)
                                     ->maxLength(255),
-                                
-                                Forms\Components\TextInput::make('icon')
-                                    ->label('الأيقونة')
-                                    ->placeholder('heroicon-o-shopping-bag')
-                                    ->helperText('اسم الأيقونة من Heroicons'),
                             ])
                             ->columns(2),
+                        
+                        Forms\Components\Section::make('صورة الفئة')
+                            ->icon('heroicon-o-photo')
+                            ->schema([
+                                Forms\Components\FileUpload::make('image')
+                                    ->label('صورة الفئة')
+                                    ->image()
+                                    ->directory('categories')
+                                    ->disk('public')
+                                    ->imageEditor()
+                                    ->imageEditorAspectRatios([
+                                        '4:5',
+                                        '16:9',
+                                        '1:1',
+                                    ])
+                                    ->helperText('الصورة ستظهر في الصفحة الرئيسية وصفحة الفئات. الأبعاد المفضلة: 800x1000 بكسل'),
+                            ]),
                         
                         Forms\Components\Section::make('الوصف')
                             ->icon('heroicon-o-document-text')
@@ -123,10 +135,11 @@ class GlobalCategoryResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('icon')
-                    ->label('الأيقونة')
-                    ->formatStateUsing(fn (?string $state): string => $state ? '🏷️' : '📁')
-                    ->alignCenter(),
+                Tables\Columns\ImageColumn::make('image')
+                    ->label('الصورة')
+                    ->disk('public')
+                    ->circular()
+                    ->defaultImageUrl(fn () => 'https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=100&h=100&fit=crop'),
                 
                 Tables\Columns\TextColumn::make('name')
                     ->label('الاسم')

@@ -55,7 +55,7 @@
                 
                 <a 
                     href="{{ route('stores.show', $store->slug) }}"
-                    class="group relative overflow-hidden rounded-3xl aspect-[16/9] shadow-2xl hover:shadow-[0_0_80px_rgba(212,175,55,0.5)] transition-all duration-700 hover:-translate-y-4 hover:scale-[1.02]"
+                    class="group relative overflow-hidden rounded-3xl aspect-[4/3] shadow-2xl hover:shadow-[0_0_80px_rgba(212,175,55,0.5)] transition-all duration-700 hover:-translate-y-4 hover:scale-[1.02]"
                     data-aos="fade-up"
                     data-aos-delay="{{ $index * 100 }}"
                 >
@@ -76,20 +76,20 @@
                     <div class="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" style="box-shadow: inset 0 0 0 2px rgba(212,175,55,0.6);"></div>
                     
                     <!-- Content -->
-                    <div class="absolute inset-x-0 bottom-0 p-8">
+                    <div class="absolute inset-x-0 bottom-0 p-6 z-10">
                         <!-- Logo Badge -->
-                        <div class="mb-6 transform transition-transform duration-700 group-hover:scale-110">
+                        <div class="mb-4">
                             @if($store->logo)
-                            <div class="w-24 h-24 rounded-2xl overflow-hidden border-4 border-white/20 shadow-2xl backdrop-blur-sm bg-white/10 flex items-center justify-center">
+                            <div class="w-14 h-14 rounded-2xl overflow-hidden shadow-2xl border-2 border-white/20 backdrop-blur-sm bg-white/10">
                                 <img 
                                     src="{{ $store->logo_url }}" 
                                     alt="{{ $storeName }}"
-                                    class="w-20 h-20 object-contain"
+                                    class="w-full h-full object-contain p-2"
                                 >
                             </div>
                             @else
-                            <div class="w-24 h-24 rounded-2xl bg-gradient-gold flex items-center justify-center shadow-2xl border-4 border-white/20">
-                                <span class="text-4xl font-playfair font-bold text-midnight">
+                            <div class="w-14 h-14 rounded-2xl bg-gradient-gold flex items-center justify-center shadow-2xl border-2 border-white/20">
+                                <span class="text-xl font-playfair font-bold text-midnight">
                                     {{ substr($storeName, 0, 1) }}
                                 </span>
                             </div>

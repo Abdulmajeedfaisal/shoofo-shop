@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "order_id": 2,
+        "merchant_id": 1,
+        "sub_order_number": "SHF-SUKKIW11-1",
+        "status": "delivered",
+        "subtotal": 1631,
+        "merchant_notes": null,
+        "created_at": "2026-01-09 02:19:39",
+        "updated_at": "2026-01-09 02:23:36",
+        "shipping_cost": 12
+    },
+    {
+        "id": 2,
+        "order_id": 2,
+        "merchant_id": 2,
+        "sub_order_number": "SHF-SUKKIW11-2",
+        "status": "delivered",
+        "subtotal": 1798,
+        "merchant_notes": null,
+        "created_at": "2026-01-09 02:19:39",
+        "updated_at": "2026-01-09 02:30:55",
+        "shipping_cost": 0
+    }
+]

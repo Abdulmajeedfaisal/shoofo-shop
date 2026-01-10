@@ -47,6 +47,7 @@ class StoreSettings extends Page implements HasForms
             'description' => $merchant->description,
             'description_ar' => $merchant->description_ar,
             'logo' => $merchant->logo,
+            'cover_image' => $merchant->cover_image,
             'phone' => $merchant->phone,
             'address' => $merchant->address,
             'shipping_type' => $merchant->shipping_type ?? 'free',
@@ -75,6 +76,16 @@ class StoreSettings extends Page implements HasForms
                             ->visibility('public')
                             ->maxSize(2048)
                             ->helperText(__('يفضل صورة مربعة بحجم 200x200 بكسل على الأقل'))
+                            ->columnSpanFull(),
+                        
+                        Forms\Components\FileUpload::make('cover_image')
+                            ->label(__('صورة الغلاف'))
+                            ->image()
+                            ->imageEditor()
+                            ->directory('merchants/covers')
+                            ->visibility('public')
+                            ->maxSize(5120)
+                            ->helperText(__('صورة الخلفية التي تظهر في صفحة متجرك - يفضل 1920x600 بكسل'))
                             ->columnSpanFull(),
                         
                         Forms\Components\TextInput::make('store_name')
@@ -176,6 +187,7 @@ class StoreSettings extends Page implements HasForms
             'description' => $data['description'],
             'description_ar' => $data['description_ar'],
             'logo' => $data['logo'],
+            'cover_image' => $data['cover_image'],
             'phone' => $data['phone'],
             'address' => $data['address'],
         ];

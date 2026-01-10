@@ -4,14 +4,18 @@
             <!-- Logo -->
             <div class="flex-shrink-0">
                 <a href="{{ route('home') }}" class="flex items-center group">
-                    <div class="flex flex-col">
-                        <span class="font-playfair text-xl md:text-2xl lg:text-3xl font-bold text-midnight dark:text-white group-hover:text-royal-gold transition-elegant">
-                            {{ app()->getLocale() === 'ar' ? 'شوفو' : 'SHOOFO' }}
-                        </span>
-                        <span class="text-royal-gold text-[10px] md:text-xs font-inter tracking-wider hidden sm:block">
-                            {{ app()->getLocale() === 'ar' ? 'سوق رقمي فاخر' : 'Luxury Digital Mall' }}
-                        </span>
-                    </div>
+                    <!-- Light Mode Logo -->
+                    <img 
+                        src="{{ asset('images/logo_shoofo_shop_1.png') }}" 
+                        alt="{{ app()->getLocale() === 'ar' ? 'شوفو' : 'SHOOFO' }}"
+                        class="h-12 md:h-14 lg:h-16 w-auto group-hover:scale-105 transition-transform duration-300 dark:hidden"
+                    >
+                    <!-- Dark Mode Logo -->
+                    <img 
+                        src="{{ asset('images/logo_shoofo_shop_in_dark.png') }}" 
+                        alt="{{ app()->getLocale() === 'ar' ? 'شوفو' : 'SHOOFO' }}"
+                        class="h-12 md:h-14 lg:h-16 w-auto group-hover:scale-105 transition-transform duration-300 hidden dark:block"
+                    >
                 </a>
             </div>
 

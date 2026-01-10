@@ -1,0 +1,110 @@
+[
+    {
+        "id": 1,
+        "name": "Admin",
+        "email": "admin@shoofo.com",
+        "email_verified_at": null,
+        "password": "$2y$12$.iIvR5jstq.3YFhK9DqaH.78eLJeQQRplAjd.R7EC7kpBulEB.gLW",
+        "remember_token": null,
+        "created_at": "2026-01-05 03:25:54",
+        "updated_at": "2026-01-05 03:25:54",
+        "role": "admin",
+        "locale": "en"
+    },
+    {
+        "id": 2,
+        "name": "Zara Store",
+        "email": "zara@shoofo.com",
+        "email_verified_at": null,
+        "password": "$2y$12$6Whxb5msfTLEf9OfkLr55uv2RSSOmcDC6Lwy1vm5jqlL3.b2uxclm",
+        "remember_token": null,
+        "created_at": "2026-01-05 03:25:54",
+        "updated_at": "2026-01-05 03:25:54",
+        "role": "merchant",
+        "locale": "en"
+    },
+    {
+        "id": 3,
+        "name": "Nike Store",
+        "email": "nike@shoofo.com",
+        "email_verified_at": null,
+        "password": "$2y$12$kjAhZO8.GFmMfZUXvtyuXuhTkecZ.7hlPC5UPthJIF2jyKs2wsARW",
+        "remember_token": null,
+        "created_at": "2026-01-05 03:25:55",
+        "updated_at": "2026-01-05 03:25:55",
+        "role": "merchant",
+        "locale": "en"
+    },
+    {
+        "id": 4,
+        "name": "Apple Store",
+        "email": "apple@shoofo.com",
+        "email_verified_at": null,
+        "password": "$2y$12$\/xqn95fNIPLBWr6sncp1J.j3GePqXXVzPzbFFD82ZVsGGVD9mQrzO",
+        "remember_token": null,
+        "created_at": "2026-01-05 03:25:55",
+        "updated_at": "2026-01-05 03:25:55",
+        "role": "merchant",
+        "locale": "en"
+    },
+    {
+        "id": 5,
+        "name": "H&M Store",
+        "email": "hm@shoofo.com",
+        "email_verified_at": null,
+        "password": "$2y$12$5ua0S51dzaR.5ImdjWYUaeD.19zivnldVdS2McQRtFFiINBDaBDa2",
+        "remember_token": null,
+        "created_at": "2026-01-05 03:25:55",
+        "updated_at": "2026-01-05 03:25:55",
+        "role": "merchant",
+        "locale": "en"
+    },
+    {
+        "id": 6,
+        "name": "Customer",
+        "email": "customer@example.com",
+        "email_verified_at": null,
+        "password": "$2y$12$071.OtZHCatLDjchQzgtH.dI8R00oxUXZzFzSyIqvN8Ln93dcaVsO",
+        "remember_token": null,
+        "created_at": "2026-01-05 03:25:56",
+        "updated_at": "2026-01-05 03:25:56",
+        "role": "customer",
+        "locale": "en"
+    },
+    {
+        "id": 7,
+        "name": "عبدالمجيد فيصل",
+        "email": "abdulmajeed.faisal.abdo@gmail.com",
+        "email_verified_at": null,
+        "password": "$2y$12$c6qHOXR7saNpFqhx.Tbteuh4jOfTcqFHRMmgFN1BVdPAggJv2fx5S",
+        "remember_token": null,
+        "created_at": "2026-01-05 04:06:57",
+        "updated_at": "2026-01-05 04:07:16",
+        "role": "customer",
+        "locale": "ar"
+    },
+    {
+        "id": 8,
+        "name": "عبدالمجيد الحيدري",
+        "email": "abdulmajeedfaisalmoqbel@gmail.com",
+        "email_verified_at": null,
+        "password": "$2y$12$kfmRXMcrGS.Z67uKFTS..u4NZ5CrjIvsxJyGBjCyc6FsyStEXqVdq",
+        "remember_token": null,
+        "created_at": "2026-01-08 00:13:18",
+        "updated_at": "2026-01-09 02:24:17",
+        "role": "customer",
+        "locale": "en"
+    },
+    {
+        "id": 9,
+        "name": "عبدالمجيد",
+        "email": "aboodalhaidary71@gmail.com",
+        "email_verified_at": null,
+        "password": "$2y$12$wvWL.l\/NQJuj.7l23BFO4ecHoOqcZ1sAdvWFLdRYesjTINf6iKLSa",
+        "remember_token": null,
+        "created_at": "2026-01-09 18:31:58",
+        "updated_at": "2026-01-10 00:01:23",
+        "role": "merchant",
+        "locale": "ar"
+    }
+]

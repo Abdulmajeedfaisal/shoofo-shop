@@ -57,9 +57,11 @@
         <div class="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-8">
             <!-- About Section -->
             <div>
-                <h3 class="font-playfair text-xl font-bold mb-4 text-royal-gold">
-                    {{ app()->getLocale() === 'ar' ? 'شوفو شوب' : 'SHOOFO Shop' }}
-                </h3>
+                <img 
+                    src="{{ asset('images/logo_shoofo_shop_in_dark.png') }}" 
+                    alt="{{ app()->getLocale() === 'ar' ? 'شوفو' : 'SHOOFO' }}"
+                    class="h-12 w-auto mb-4"
+                >
                 <p class="text-white/60 mb-4 leading-relaxed text-sm">
                     {{ __('home.tagline') }}
                 </p>

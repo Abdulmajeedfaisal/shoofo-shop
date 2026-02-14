@@ -3,7 +3,11 @@
   
   # SHOOFO Shop 🛍️
   
+  <div dir="rtl">
+  
   ### منصة تجارة إلكترونية متعددة التجار - Multi-Merchant E-Commerce Platform
+  
+  </div>
   
   [![Laravel](https://img.shields.io/badge/Laravel-12.x-FF2D20?style=flat&logo=laravel&logoColor=white)](https://laravel.com)
   [![PHP](https://img.shields.io/badge/PHP-8.2+-777BB4?style=flat&logo=php&logoColor=white)](https://php.net)
@@ -11,6 +15,7 @@
   [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.x-38B2AC?style=flat&logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
   [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
+  <div dir="rtl">
   <p align="center">
     منصة تجارة إلكترونية حديثة وقوية تدعم متاجر متعددة مع لوحات تحكم منفصلة للمسؤولين والتجار
     <br />
@@ -23,9 +28,12 @@
     ·
     <a href="#-المساهمة">المساهمة</a>
   </p>
+  </div>
 </div>
 
 ---
+
+<div dir="rtl">
 
 ## 📋 جدول المحتويات
 
@@ -42,7 +50,11 @@
 - [المساهمة](#-المساهمة)
 - [الترخيص](#-الترخيص)
 
+</div>
+
 ---
+
+<div dir="rtl">
 
 ## 🎯 نظرة عامة
 
@@ -58,7 +70,11 @@
 - 🛒 **نظام سلة تسوق متطور**: مع دعم الطلبات المقسمة حسب التاجر
 - 📦 **إدارة شحن مرنة**: خيارات شحن قابلة للتخصيص لكل تاجر
 
+</div>
+
 ---
+
+<div dir="rtl">
 
 ## 🚀 المميزات
 
@@ -104,6 +120,8 @@
 - ✅ نظام إشعارات قاعدة البيانات
 - ✅ بحث عام في لوحة التحكم (Cmd/Ctrl + K)
 
+</div>
+
 ---
 
 ## 🛠 التقنيات المستخدمة
@@ -134,9 +152,13 @@
 
 ---
 
+<div dir="rtl">
+
 ## 📦 المتطلبات
 
 قبل البدء، تأكد من توفر المتطلبات التالية:
+
+</div>
 
 - **PHP** >= 8.2
 - **Composer** >= 2.0
@@ -145,7 +167,11 @@
 - **MySQL** >= 8.0 أو **MariaDB** >= 10.3
 - **Git**
 
+<div dir="rtl">
+
 ### ملحقات PHP المطلوبة:
+
+</div>
 ```
 - BCMath
 - Ctype
@@ -161,16 +187,24 @@
 
 ---
 
+<div dir="rtl">
+
 ## ⚡ التثبيت السريع
 
 ### 1️⃣ استنساخ المشروع
+
+</div>
 
 ```bash
 git clone https://github.com/your-username/shoofo-shop.git
 cd shoofo-shop
 ```
 
+<div dir="rtl">
+
 ### 2️⃣ تثبيت الاعتماديات
+
+</div>
 
 ```bash
 # تثبيت حزم PHP
@@ -180,7 +214,11 @@ composer install
 npm install
 ```
 
+<div dir="rtl">
+
 ### 3️⃣ إعداد البيئة
+
+</div>
 
 ```bash
 # نسخ ملف البيئة
@@ -190,9 +228,13 @@ cp .env.example .env
 php artisan key:generate
 ```
 
+<div dir="rtl">
+
 ### 4️⃣ إعداد قاعدة البيانات
 
 قم بتحديث ملف `.env` بمعلومات قاعدة البيانات:
+
+</div>
 
 ```env
 DB_CONNECTION=mysql
@@ -203,7 +245,11 @@ DB_USERNAME=root
 DB_PASSWORD=your_password
 ```
 
+<div dir="rtl">
+
 ثم قم بتشغيل الترحيلات:
+
+</div>
 
 ```bash
 # إنشاء قاعدة البيانات
@@ -213,7 +259,11 @@ php artisan migrate
 php artisan db:seed
 ```
 
+<div dir="rtl">
+
 ### 5️⃣ بناء الأصول
+
+</div>
 
 ```bash
 # للتطوير
@@ -223,7 +273,11 @@ npm run dev
 npm run build
 ```
 
+<div dir="rtl">
+
 ### 6️⃣ تشغيل المشروع
+
+</div>
 
 ```bash
 # باستخدام أمر واحد (يشغل جميع الخدمات)
@@ -236,13 +290,19 @@ npm run dev
 
 الآن يمكنك زيارة التطبيق على: `http://localhost:8000`
 
+</div>
+
 ---
+
+<div dir="rtl">
 
 ## ⚙️ الإعداد والتكوين
 
 ### إعدادات التطبيق
 
 في ملف `.env`، يمكنك تخصيص:
+
+</div>
 
 ```env
 APP_NAME="SHOOFO Shop"
@@ -255,7 +315,11 @@ APP_LOCALE=en
 APP_FALLBACK_LOCALE=en
 ```
 
+<div dir="rtl">
+
 ### إعدادات البريد الإلكتروني
+
+</div>
 
 ```env
 MAIL_MAILER=smtp
@@ -267,7 +331,11 @@ MAIL_FROM_ADDRESS="hello@shoofo.com"
 MAIL_FROM_NAME="${APP_NAME}"
 ```
 
+<div dir="rtl">
+
 ### إعدادات التخزين
+
+</div>
 
 ```bash
 # إنشاء رابط رمزي للتخزين العام
@@ -276,11 +344,15 @@ php artisan storage:link
 
 ---
 
+<div dir="rtl">
+
 ## 🎭 البيانات التجريبية
 
 بعد تشغيل `php artisan db:seed`، ستحصل على:
 
 ### حسابات المستخدمين
+
+</div>
 
 | الدور | البريد الإلكتروني | كلمة المرور | الوصول | الملاحظات |
 |------|-------------------|-------------|--------|-----------|
@@ -294,18 +366,24 @@ php artisan storage:link
 ### البيانات المضمنة
 
 #### الفئات العامة (4)
+
+
 - Fashion & Clothing / الأزياء والملابس
 - Electronics / الإلكترونيات
 - Sports & Fitness / الرياضة واللياقة
 - Accessories / الإكسسوارات
 
 #### المتاجر (4)
+
+
 - **Zara**: متجر أزياء عالمي (مميز)
 - **Nike**: علامة رياضية رائدة (مميز)
 - **Apple**: منتجات تقنية فاخرة (مميز)
 - **H&M**: أزياء بأسعار معقولة
 
 #### الفئات الفرعية (7)
+
+
 - Women's Fashion, Men's Fashion (Zara)
 - Running Shoes, Sports Apparel (Nike)
 - iPhones, MacBooks (Apple)
@@ -313,6 +391,8 @@ php artisan storage:link
 
 #### المنتجات (8)
 مع صور من Unsplash، أسعار واقعية، وأوصاف بالعربية والإنجليزية:
+
+
 - Elegant Evening Dress (Zara) - 599 ريال (تخفيض: 449)
 - Classic Blazer (Zara) - 399 ريال
 - Air Max Running Shoes (Nike) - 899 ريال
@@ -323,11 +403,15 @@ php artisan storage:link
 - Denim Jeans (H&M) - 199 ريال
 
 #### البانرات الإعلانية (3)
+
+
 - Welcome to SHOOFO - بانر ترحيبي
 - Discover Luxury Fashion - بانر الأزياء
 - Premium Technology - بانر الإلكترونيات
 
 ### ميزات البيانات التجريبية
+
+
 - ✅ جميع الصور من Unsplash (روابط خارجية)
 - ✅ أسماء وأوصاف بالعربية والإنجليزية
 - ✅ Slugs صديقة لمحركات البحث

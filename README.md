@@ -1,34 +1,35 @@
 <div align="center">
   <img src="public/images/logo_shoofo_shop_1.png" alt="SHOOFO Shop Logo" width="200"/>
-  
-  # SHOOFO Shop 🛍️
-  
-  <div dir="rtl">
-  
-  ### منصة تجارة إلكترونية متعددة التجار - Multi-Merchant E-Commerce Platform
-  
-  </div>
-  
-  [![Laravel](https://img.shields.io/badge/Laravel-12.x-FF2D20?style=flat&logo=laravel&logoColor=white)](https://laravel.com)
-  [![PHP](https://img.shields.io/badge/PHP-8.2+-777BB4?style=flat&logo=php&logoColor=white)](https://php.net)
-  [![Filament](https://img.shields.io/badge/Filament-3.3-F59E0B?style=flat&logo=data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDJMMiAxMkwxMiAyMkwyMiAxMkwxMiAyWiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+&logoColor=white)](https://filamentphp.com)
-  [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.x-38B2AC?style=flat&logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
-  [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-  <div dir="rtl">
-  <p align="center">
-    منصة تجارة إلكترونية حديثة وقوية تدعم متاجر متعددة مع لوحات تحكم منفصلة للمسؤولين والتجار
-    <br />
-    <a href="#-المميزات"><strong>استكشف المميزات »</strong></a>
-    <br />
-    <br />
-    <a href="#-التثبيت-السريع">التثبيت</a>
-    ·
-    <a href="#-لقطات-الشاشة">لقطات الشاشة</a>
-    ·
-    <a href="#-المساهمة">المساهمة</a>
-  </p>
-  </div>
+# SHOOFO Shop 🛍️
+
+<div dir="rtl">
+
+### منصة تجارة إلكترونية متعددة التجار - Multi-Merchant E-Commerce Platform
+
+</div>
+
+[![Laravel](https://img.shields.io/badge/Laravel-12.x-FF2D20?style=flat&logo=laravel&logoColor=white)](https://laravel.com)
+[![PHP](https://img.shields.io/badge/PHP-8.2+-777BB4?style=flat&logo=php&logoColor=white)](https://php.net)
+[![Filament](https://img.shields.io/badge/Filament-3.3-F59E0B?style=flat&logo=data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDJMMiAxMkwxMiAyMkwyMiAxMkwxMiAyWiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+&logoColor=white)](https://filamentphp.com)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.x-38B2AC?style=flat&logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
+<div dir="rtl">
+<p align="center">
+  منصة تجارة إلكترونية حديثة وقوية تدعم متاجر متعددة مع لوحات تحكم منفصلة للمسؤولين والتجار
+  <br />
+  <a href="#-المميزات"><strong>استكشف المميزات »</strong></a>
+  <br />
+  <br />
+  <a href="#-التثبيت-السريع">التثبيت</a>
+  ·
+  <a href="#-لقطات-الشاشة">لقطات الشاشة</a>
+  ·
+  <a href="#-المساهمة">المساهمة</a>
+</p>
+</div>
+
 </div>
 
 ---
@@ -79,6 +80,7 @@
 ## 🚀 المميزات
 
 ### للعملاء 👥
+
 - ✅ تصفح المنتجات حسب الفئات العامة والمتاجر
 - ✅ بحث متقدم ثلاثي (منتجات، متاجر، فئات) مع اقتراحات فورية
 - ✅ فلترة متقدمة (السعر، المخزون، الترتيب، المتجر)
@@ -92,6 +94,7 @@
 - ✅ طرق دفع متعددة (COD, Credit Card, Bank Transfer)
 
 ### للتجار 🏪
+
 - ✅ لوحة تحكم Filament مخصصة لكل تاجر (`/merchant`)
 - ✅ إدارة كاملة للمنتجات (CRUD) مع دعم SKU
 - ✅ إدارة الفئات الخاصة بالمتجر مرتبطة بالفئات العامة
@@ -107,6 +110,7 @@
 - ✅ إدارة الأسعار والتخفيضات (price, sale_price)
 
 ### للمسؤولين 👨‍💼
+
 - ✅ لوحة تحكم Filament شاملة (`/admin`)
 - ✅ إدارة التجار الكاملة (CRUD + الموافقة/الرفض)
 - ✅ إدارة الفئات العامة (Global Categories) مع الأيقونات والصور
@@ -172,6 +176,7 @@
 ### ملحقات PHP المطلوبة:
 
 </div>
+
 ```
 - BCMath
 - Ctype
@@ -288,6 +293,8 @@ php artisan serve
 npm run dev
 ```
 
+<div dir="rtl">
+
 الآن يمكنك زيارة التطبيق على: `http://localhost:8000`
 
 </div>
@@ -363,10 +370,11 @@ php artisan storage:link
 | **Merchant (H&M)** | hm@shoofo.com | password | `/merchant` | متجر أزياء عادي |
 | **Customer** | customer@example.com | password | `/` | حساب عميل للتسوق |
 
+<div dir="rtl">
+
 ### البيانات المضمنة
 
 #### الفئات العامة (4)
-
 
 - Fashion & Clothing / الأزياء والملابس
 - Electronics / الإلكترونيات
@@ -375,7 +383,6 @@ php artisan storage:link
 
 #### المتاجر (4)
 
-
 - **Zara**: متجر أزياء عالمي (مميز)
 - **Nike**: علامة رياضية رائدة (مميز)
 - **Apple**: منتجات تقنية فاخرة (مميز)
@@ -383,15 +390,14 @@ php artisan storage:link
 
 #### الفئات الفرعية (7)
 
-
 - Women's Fashion, Men's Fashion (Zara)
 - Running Shoes, Sports Apparel (Nike)
 - iPhones, MacBooks (Apple)
 - Casual Wear (H&M)
 
 #### المنتجات (8)
-مع صور من Unsplash، أسعار واقعية، وأوصاف بالعربية والإنجليزية:
 
+مع صور من Unsplash، أسعار واقعية، وأوصاف بالعربية والإنجليزية:
 
 - Elegant Evening Dress (Zara) - 599 ريال (تخفيض: 449)
 - Classic Blazer (Zara) - 399 ريال
@@ -404,13 +410,11 @@ php artisan storage:link
 
 #### البانرات الإعلانية (3)
 
-
 - Welcome to SHOOFO - بانر ترحيبي
 - Discover Luxury Fashion - بانر الأزياء
 - Premium Technology - بانر الإلكترونيات
 
 ### ميزات البيانات التجريبية
-
 
 - ✅ جميع الصور من Unsplash (روابط خارجية)
 - ✅ أسماء وأوصاف بالعربية والإنجليزية
@@ -420,9 +424,15 @@ php artisan storage:link
 - ✅ كميات مخزون واقعية
 - ✅ SKU فريدة لكل منتج
 
+</div>
+
 ---
 
+<div dir="rtl">
+
 ## 📁 هيكل المشروع
+
+</div>
 
 ```
 shoofo-shop/
@@ -521,11 +531,16 @@ shoofo-shop/
 
 ---
 
+<div dir="rtl">
+
 ## 🔌 واجهات برمجة التطبيقات
 
 ### المسارات الرئيسية
 
 #### الواجهة الأمامية
+
+</div>
+
 ```
 GET  /                          # الصفحة الرئيسية (بانرات، فئات، متاجر مميزة)
 GET  /categories                # قائمة الفئات العامة
@@ -538,7 +553,12 @@ GET  /search/suggestions        # API للاقتراحات الفورية (JSON)
 GET  /locale/{locale}           # تبديل اللغة (en/ar)
 ```
 
+<div dir="rtl">
+
 #### سلة التسوق والطلبات (تتطلب تسجيل دخول)
+
+</div>
+
 ```
 GET    /cart                      # عرض السلة
 POST   /cart/add/{product}        # إضافة للسلة
@@ -552,7 +572,12 @@ GET    /orders                    # طلباتي
 GET    /orders/{order}            # تفاصيل الطلب مع الطلبات الفرعية
 ```
 
+<div dir="rtl">
+
 #### لوحات التحكم
+
+</div>
+
 ```
 /admin                          # لوحة تحكم المسؤول (Filament)
 /merchant                       # لوحة تحكم التاجر (Filament)
@@ -560,7 +585,12 @@ GET    /orders/{order}            # تفاصيل الطلب مع الطلبات 
 /merchant/rejected              # صفحة رفض التاجر
 ```
 
+<div dir="rtl">
+
 #### المصادقة (Laravel Breeze)
+
+</div>
+
 ```
 GET  /login                     # صفحة تسجيل الدخول
 POST /login                     # معالجة تسجيل الدخول
@@ -573,9 +603,14 @@ GET  /reset-password/{token}    # إعادة تعيين كلمة المرور
 POST /reset-password            # معالجة إعادة التعيين
 ```
 
+<div dir="rtl">
+
 ### معلمات الفلترة والبحث
 
 #### فلترة المنتجات
+
+</div>
+
 ```
 ?q=search_term                  # البحث النصي
 ?store=merchant_id              # فلترة حسب المتجر
@@ -589,24 +624,26 @@ POST /reset-password            # معالجة إعادة التعيين
 
 ---
 
+<div dir="rtl">
+
 ## 🔐 الأمان
 
 ### الممارسات الأمنية المطبقة
 
 - ✅ **حماية CSRF**: جميع النماذج محمية ضد هجمات CSRF باستخدام `@csrf`
 - ✅ **تشفير كلمات المرور**: باستخدام Bcrypt مع 12 جولة
-- ✅ **التحقق من الصلاحيات**: 
+- ✅ **التحقق من الصلاحيات**:
   - Middleware مخصصة: `EnsureUserIsAdmin`, `EnsureMerchantApproved`
   - التحقق من ملكية الموارد (Orders, Cart)
   - نظام أدوار ثلاثي (Admin, Merchant, Customer)
 - ✅ **حماية SQL Injection**: استخدام Eloquent ORM و Query Builder
 - ✅ **XSS Protection**: تنظيف المدخلات تلقائياً عبر Blade `{{ }}`
 - ✅ **Rate Limiting**: حماية من الطلبات المتكررة على المصادقة
-- ✅ **Session Security**: 
+- ✅ **Session Security**:
   - تشفير الجلسات
   - HTTPS only في الإنتاج
   - Session timeout بعد 120 دقيقة
-- ✅ **File Upload Security**: 
+- ✅ **File Upload Security**:
   - التحقق من أنواع الملفات
   - تخزين آمن في `storage/app`
   - روابط رمزية للوصول العام
@@ -616,6 +653,8 @@ POST /reset-password            # معالجة إعادة التعيين
   - Soft deletes للبيانات الحساسة
 
 ### التوصيات للإنتاج
+
+</div>
 
 ```env
 # في بيئة الإنتاج
@@ -635,6 +674,8 @@ DB_PASSWORD=strong_random_password
 MAIL_ENCRYPTION=tls
 ```
 
+<div dir="rtl">
+
 ### Middleware المخصصة
 
 **EnsureUserIsAdmin**: يتحقق من أن المستخدم لديه دور `admin` قبل الوصول للوحة التحكم
@@ -645,9 +686,15 @@ MAIL_ENCRYPTION=tls
 - حالة التاجر `approved` (وليس `pending` أو `rejected`)
 - يوجه التجار غير المعتمدين لصفحات خاصة
 
+</div>
+
 ---
 
+<div dir="rtl">
+
 ## 🧪 الاختبارات
+
+</div>
 
 ```bash
 # تشغيل جميع الاختبارات
@@ -662,16 +709,24 @@ php artisan test --coverage
 
 ---
 
+<div dir="rtl">
+
 ## 🚀 النشر
 
 ### متطلبات الخادم
+
+</div>
 
 - PHP 8.2+
 - MySQL 8.0+
 - Composer
 - Node.js & NPM
 
+<div dir="rtl">
+
 ### خطوات النشر
+
+</div>
 
 1. **رفع الملفات للخادم**
 2. **تثبيت الاعتماديات**:
@@ -701,6 +756,8 @@ php artisan test --coverage
 
 ---
 
+<div dir="rtl">
+
 ## 🤝 المساهمة
 
 نرحب بمساهماتكم! إذا كنت ترغب في المساهمة:
@@ -718,19 +775,31 @@ php artisan test --coverage
 - حدّث التوثيق عند الحاجة
 - تأكد من أن جميع الاختبارات تعمل
 
+</div>
+
 ---
+
+<div dir="rtl">
 
 ## 📝 الترخيص
 
 هذا المشروع مرخص تحت رخصة MIT - انظر ملف [LICENSE](LICENSE) للتفاصيل.
 
+</div>
+
 ---
+
+<div dir="rtl">
 
 ## 👨‍💻 المطور
 
 تم تطوير هذا المشروع بواسطة فريق SHOOFO
 
+</div>
+
 ---
+
+<div dir="rtl">
 
 ## 📞 الدعم
 
@@ -740,7 +809,11 @@ php artisan test --coverage
 - 🐛 الإبلاغ عن مشكلة: [GitHub Issues](https://github.com/your-username/shoofo-shop/issues)
 - 📖 التوثيق: [Wiki](https://github.com/your-username/shoofo-shop/wiki)
 
+</div>
+
 ---
+
+<div dir="rtl">
 
 ## 🙏 شكر وتقدير
 
@@ -748,6 +821,8 @@ php artisan test --coverage
 - [Filament](https://filamentphp.com) - لوحات التحكم الاحترافية
 - [Tailwind CSS](https://tailwindcss.com) - التصميم العصري
 - [Unsplash](https://unsplash.com) - الصور المجانية
+
+</div>
 
 ---
 
@@ -758,8 +833,9 @@ php artisan test --coverage
   </p>
 </div>
 
-
 ---
+
+<div dir="rtl">
 
 ## 🎨 التصميم والواجهة
 
@@ -810,7 +886,11 @@ php artisan test --coverage
 - فئات مساعدة: `.rtl`, `.ltr`
 - تخطيط متجاوب يدعم الاتجاهين
 
+</div>
+
 ---
+
+<div dir="rtl">
 
 ## 🗄️ قاعدة البيانات
 
@@ -849,6 +929,8 @@ php artisan test --coverage
 
 ### العلاقات الرئيسية
 
+</div>
+
 ```
 User (1) ──→ (1) Merchant
 User (1) ──→ (1) Cart
@@ -876,6 +958,8 @@ MerchantOrder (1) ──→ (*) OrderItems
 
 ---
 
+<div dir="rtl">
+
 ## 🚢 نظام الشحن المتقدم
 
 ### أنواع الشحن العامة
@@ -900,11 +984,17 @@ MerchantOrder (1) ──→ (*) OrderItems
 - يُحسب الشحن لكل تاجر بشكل مستقل
 - المجموع النهائي = مجموع الشحن من جميع التجار
 
+</div>
+
 ---
+
+<div dir="rtl">
 
 ## 📊 نظام الطلبات المتقدم
 
 ### هيكل الطلبات
+
+</div>
 
 ```
 Order (الطلب الرئيسي)
@@ -927,6 +1017,8 @@ Order (الطلب الرئيسي)
         └── ...
 ```
 
+<div dir="rtl">
+
 ### حالات الطلبات
 
 1. **pending**: قيد الانتظار (بعد الإنشاء مباشرة)
@@ -945,16 +1037,26 @@ Order (الطلب الرئيسي)
 - إذا كان أي طلب فرعي `shipped` → الطلب الرئيسي `shipped`
 - وهكذا...
 
+</div>
+
 ---
+
+<div dir="rtl">
 
 ## 🔧 أوامر Composer المخصصة
 
 المشروع يوفر أوامر مخصصة لتسهيل التطوير:
 
 ### Setup (الإعداد الأولي)
+
+</div>
+
 ```bash
 composer setup
 ```
+
+<div dir="rtl">
+
 يقوم بـ:
 1. تثبيت اعتماديات PHP
 2. نسخ `.env.example` إلى `.env`
@@ -964,9 +1066,15 @@ composer setup
 6. بناء الأصول
 
 ### Dev (التطوير)
+
+</div>
+
 ```bash
 composer dev
 ```
+
+<div dir="rtl">
+
 يشغل جميع الخدمات معاً باستخدام `concurrently`:
 - `php artisan serve` - خادم Laravel
 - `php artisan queue:listen` - معالج قوائم الانتظار
@@ -974,14 +1082,24 @@ composer dev
 - `npm run dev` - Vite dev server
 
 ### Test (الاختبارات)
+
+</div>
+
 ```bash
 composer test
 ```
+
+<div dir="rtl">
+
 يقوم بـ:
 1. مسح ذاكرة التخزين المؤقت للإعدادات
 2. تشغيل جميع الاختبارات
 
+</div>
+
 ---
+
+<div dir="rtl">
 
 ## 🌍 نظام اللغات المتقدم
 
@@ -993,6 +1111,8 @@ composer test
 ### ملفات الترجمة
 
 كل لغة لها ملفات منفصلة:
+
+</div>
 
 ```
 lang/
@@ -1009,7 +1129,11 @@ lang/
     └── ... (نفس الملفات)
 ```
 
+<div dir="rtl">
+
 ### تبديل اللغة
+
+</div>
 
 ```php
 // في المتصفح
@@ -1020,6 +1144,8 @@ GET /locale/en  // التبديل للإنجليزية
 app()->setLocale('ar');
 ```
 
+<div dir="rtl">
+
 ### حفظ تفضيلات اللغة
 
 - للمستخدمين المسجلين: تُحفظ في قاعدة البيانات (`users.locale`)
@@ -1027,11 +1153,15 @@ app()->setLocale('ar');
 
 ### استخدام الترجمة في Blade
 
+</div>
+
 ```blade
 {{ __('general.welcome') }}
 {{ __('cart.add_to_cart') }}
 @lang('products.price')
 ```
+
+<div dir="rtl">
 
 ### الحقول متعددة اللغات في قاعدة البيانات
 
@@ -1042,7 +1172,11 @@ app()->setLocale('ar');
 - `title` / `title_ar`
 - `store_name` / `store_name_ar`
 
+</div>
+
 ---
+
+<div dir="rtl">
 
 ## 💡 نصائح وأفضل الممارسات
 
@@ -1055,6 +1189,8 @@ app()->setLocale('ar');
 5. **استخدم Eloquent** بدلاً من SQL الخام
 
 ### للأداء
+
+</div>
 
 1. **فعّل التخزين المؤقت** في الإنتاج:
    ```bash
@@ -1072,6 +1208,8 @@ app()->setLocale('ar');
 
 4. **استخدم CDN** للأصول الثابتة
 
+<div dir="rtl">
+
 ### للأمان
 
 1. **لا تكشف معلومات حساسة** في `.env`
@@ -1080,11 +1218,17 @@ app()->setLocale('ar');
 4. **راجع السجلات** للأنشطة المشبوهة
 5. **فعّل 2FA** لحسابات المسؤولين
 
+</div>
+
 ---
+
+<div dir="rtl">
 
 ## 🐛 استكشاف الأخطاء
 
 ### المشاكل الشائعة
+
+</div>
 
 #### 1. خطأ "Class not found"
 ```bash
@@ -1124,6 +1268,8 @@ composer dump-autoload
 
 ---
 
+<div dir="rtl">
+
 ## 📈 خارطة الطريق
 
 ### الميزات المستقبلية المخططة
@@ -1141,5 +1287,7 @@ composer dump-autoload
 - [ ] نظام إشعارات SMS
 - [ ] دعم عملات متعددة
 - [ ] تكامل مع منصات التواصل الاجتماعي
+
+</div>
 
 ---

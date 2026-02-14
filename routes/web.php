@@ -37,10 +37,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/cart/update/{cartItem}', [CartController::class, 'update'])->name('cart.update');
     Route::delete('/cart/remove/{cartItem}', [CartController::class, 'remove'])->name('cart.remove');
     Route::delete('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');
-});
 
 // Checkout Routes
-Route::middleware('auth')->group(function () {
+
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
     Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
     Route::get('/checkout/success/{order}', [CheckoutController::class, 'success'])->name('checkout.success');
